@@ -1,6 +1,7 @@
 from marshmallow import Schema, fields
 
 class PresentationSch(Schema):
+  presentation_id = fields.Int()
   roomname = fields.String()
   questions = fields.Nested(QuestionsSch)
 
