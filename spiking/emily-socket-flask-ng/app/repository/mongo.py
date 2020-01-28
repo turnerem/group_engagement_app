@@ -20,5 +20,5 @@ class MongoRepository(object):
   def find(self, selector):
     return self.db.presentation.find_one(selector)
 
-  def create(self, selector):
-    return self.db.presentation.insert_one(a_presentation)
+  def create(self, presentation):
+    return self.db.presentation.insert_one(presentation)
