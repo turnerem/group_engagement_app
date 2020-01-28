@@ -11,4 +11,27 @@ class Service(object):
     if not presentation_id:
       raise Exception("presentation id not provided")
 
-  def find_presentation()
+  def find_all_presentations(self):
+    presentations = self.repo_client.find_all({'user_id': self.user_id})
+    return [self.dump(presentation) for presentation in presentations]
+
+  def find_presentation(self, presentation_id):
+    presentation = self.repo_client.find({'user_id': self.user_id, 'presentation_id': presentation_id})
+    return self.dump(presentation)
+
+  # not sure what presRepo should look like.
+  # seem to be dumping data into the collection...
+  # or dumping a collection into mongo?!?!
+  # seems to be updating collectoin belonging to a partic self(?)
+  def create_presentation_for(self, presRepo):
+    self.repo_client.create(self.prepare_presentation(presRepo))
+    return self.dump(presRepo.data)
+
+  # I think automatically created mongoDB id is excluded
+  def dump(self, data):
+    return PresentationSch(exclude=['_id']).dump(data).data
+
+  # this is adding our own user id on instead.
+  def prepare_presentation(self, presRepo):
+    data = presRepo.datadata['user_id'] = self.user_id
+    return data
