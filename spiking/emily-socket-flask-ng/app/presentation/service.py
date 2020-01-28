@@ -1,3 +1,5 @@
+# only using Presentation Schema for now. How to work with nested schema?
+
 from ..repository import Repository
 from ..repository.mongo import MongoRepository
 from .schema import PresentationSch, QuestionsSch
