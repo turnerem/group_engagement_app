@@ -5,6 +5,9 @@ class Repository(object):
       raise ValueError("Invalid repository implementation")
     self.client = adapter()
 
+  def find_all(self, selector):
+    return self.client.find_all(selector)
+    
   def find(self, selector):
     return self.client.find(selector)
 
