@@ -10,19 +10,19 @@ import { Router } from '@angular/router'
 export class HomeComponent implements OnInit {
 
   selectedTab: Number;
-  presentations: Array<any>;
+  meetings: Array<any>;
 
   constructor(
     private apiClient: ApiClientService,
     private router: Router
   ) {
     this.selectedTab = 0;
-    this.presentations = [];
+    this.meetings = [];
    }
 
   ngOnInit() {
-    this.apiClient.getPresentations().then( (presentations) => {
-      this.presentations = presentations
+    this.apiClient.getMeetings().then( (meetings) => {
+      this.meetings = meetings
     })
   }
 

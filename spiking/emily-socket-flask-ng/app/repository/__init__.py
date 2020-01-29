@@ -11,5 +11,5 @@ class Repository(object):
   def find(self, selector):
     return self.client.find(selector)
 
-  def create(self, presentation):
-    return self.client.create(presentation)
+  def create(self, meeting):
+    return self.client.create(meeting)

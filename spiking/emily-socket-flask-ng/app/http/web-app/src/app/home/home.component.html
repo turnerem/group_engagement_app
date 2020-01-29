@@ -4,9 +4,9 @@
  </mat-toolbar>
  
  <mat-tab-group mat-align-tabs="center" [selectedIndex]="selectedTab" dynamicHeight>
-    <mat-tab label="Presentations">
+    <mat-tab label="Meetings">
       <mat-grid-list cols="4">
-          <mat-grid-tile *ngFor="let repo of presentations" rowHeight='200px' >
+          <mat-grid-tile *ngFor="let repo of meetings" rowHeight='200px' >
               <mat-card class="card">
                 <mat-card-header class="title">
                   <mat-card-title>{{repo.roomname}}</mat-card-title>

@@ -8,21 +8,21 @@ export class ApiClientService {
  constructor(private http: HttpClient) {
  }
 
- createPresentation(repo) {
-   return this.perform('post', '/presentations', repo);
+ createMeeting(repo) {
+   return this.perform('post', '/meetings', repo);
  }
 
- getPresentations() {
-   return this.perform('get', '/presentations');
+ getMeetings() {
+   return this.perform('get', '/meetings');
  }
 
- getPresentation(repo) {
-   return this.perform('get', `/presentations/${repo.id}`);
+ getMeeting(repo) {
+   return this.perform('get', `/meetings/${repo.id}`);
  }
 
  async perform (method, resource, data = {}) {
    const url = `http://localhost:4433${resource}`;
-
+    console.log('resource', resource)
    const httpOptions = {
      headers: new HttpHeaders({
        'Content-Type':  'application/json',
