@@ -22,7 +22,10 @@ mongo = PyMongo(app)
 @app.route('/', methods=['GET', 'POST', 'PATCH'])
 def home():
     print('~~~~~request made to root~~~~~')
-    collection_name = "meetings"
+    # This could be user/account name - which will target users personal collection
+    # e.g
+    # collection_name = "dougs_lectures"
+    collection_name = "dancingb"
     target_collection = mongo.db[collection_name]
 
     if request.method == 'GET':
@@ -41,7 +44,7 @@ def home():
             parsed_json = json.loads(request.data)
             result = target_collection.insert_one(parsed_json)
             print('*****SUCCESS******')
-            return jsonify({'posted_article_id': str(result.inserted_id)})
+            return jsonify({'posted_room_id': str(result.inserted_id)})
         except:
             print('Post request failed :(')
             return '''<p> :( </p>'''
@@ -76,23 +79,28 @@ def home():
             print('request ended')
 
 
-@app.route('/<room_id>', methods=['GET'])
-def getSingleRoom(room_id):
+@app.route('/<user>/<session_id>', methods=['GET', 'POST'])
+def getSingleRoom(user, session_id):
     print('~~~~~ making request for single room ~~~~~~')
-    print('searching for ' + room_id + '.......')
-    collection_name = "meetings"
-    target_collection = mongo.db[collection_name]
+    print('user: ' + user + ', session_id: ' + session_id)
+    target_collection = mongo.db[user]
     if(request.method == 'GET'):
         result = target_collection.find_one(
-            {'_id': ObjectId(room_id)})
+            {'_id': ObjectId(session_id)})
         # below will crash on no result - cannot stringify 'NoneType'
         result['_id'] = str(result['_id'])
         return jsonify(result)
+    if(request.method == 'POST'):
+        # /dancingb/
+        print('Post request made!')
 
     return '''<h1> you made a good get request there friend! </h1>'''
 
 
 app.run(host='0.0.0.0')
+
+# flask request methods
+
 #     request.args: the key/value pairs in the URL query string
 
 #     request.form: the key/value pairs in the body, from a HTML post form, or JavaScript request that isn't JSON encoded
