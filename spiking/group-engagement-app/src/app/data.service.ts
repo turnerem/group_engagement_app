@@ -5,8 +5,8 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class DataService {
-  private _dataUrl = "https://heroku-nc-news.herokuapp.com/api";
-  // data api
+  private _dataUrl = "http://192.168.100.131:5000/dancingBB";
+  // data api http://192.168.100.131:5000/dancingBB
 
   constructor(private http: HttpClient) {}
 

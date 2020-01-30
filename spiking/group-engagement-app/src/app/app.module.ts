@@ -10,7 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { PublicComponent } from './public/public.component';
 import { OrganiserComponent } from './organiser/organiser.component';
 import { AuthService } from './auth.service';
-import {DataService} from './data.service'
+import {DataService} from './data.service';
+import { CreateSessionComponent } from './create-session/create-session.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {DataService} from './data.service'
     RegisterComponent,
     LoginComponent,
     PublicComponent,
-    OrganiserComponent
+    OrganiserComponent,
+    CreateSessionComponent
   ],
   imports: [
     BrowserModule,

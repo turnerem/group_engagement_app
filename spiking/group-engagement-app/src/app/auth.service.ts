@@ -5,9 +5,9 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class AuthService {
-  private _registerUrl = "";
+  private _registerUrl = "http://192.168.100.131:5000";
   //need register backend api URL
-  private _loginUrl = '';
+  private _loginUrl = 'http://192.168.100.131:5000/tommy';
   //need users api
 
   constructor(private http: HttpClient) {}
