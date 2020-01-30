@@ -1,0 +1,17 @@
+<div>
+  <h3>register now</h3>
+  <form>
+    <div>
+      <label for="">Username</label>
+      <input [(ngModel)]='registerUserData.username' name='Username' type="text" required/>
+    </div>
+    <div>
+      <label>Password</label>
+      <input [(ngModel)]='registerUserData.password' name='password' type="password" required/>
+    </div>
+    <button (click)='registerUser()' type='button'>register</button>
+  </form>
+</div>
+
+<!-- ngModel is a directive which binds input, select and textarea, and stores the required user value in a variable and we
+can use that variable whenever we require that value. It also is used during validations in a form. -->

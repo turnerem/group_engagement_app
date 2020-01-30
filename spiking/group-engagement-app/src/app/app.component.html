@@ -1,0 +1,22 @@
+<span>{{ title }}</span>
+
+<nav>
+  <div>
+    <ul>
+      <li>
+        <a routerLink="/public" routerLinkActive="active">public</a>
+      </li>
+      <li>
+        <a routerLink="/organiser" routerLinkActive="active">organiser</a>
+      </li>
+    </ul>
+    <ul>
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+      <a routerLink="/register" routerLinkActive="active">Register</a>
+      <!-- <a>Logout</a> -->
+    </ul>
+  </div>
+</nav>
+<div>
+  <router-outlet></router-outlet>
+</div>
