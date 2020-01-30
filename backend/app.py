@@ -11,6 +11,7 @@ import pymongo
 # setup app as flask server
 app = Flask(__name__)
 CORS(app)
+
 # config to look at hosted mongodb database
 db_password = "dancingb"
 db_name = "meetings"
