@@ -19,22 +19,25 @@ mongo = PyMongo(app)
 
 
 # On root request
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST', 'GET'])
 def add_new_user():
-    print('post request made - add_new_user')
-    print('attempting to load json')
-    new_user = json.loads(request.data)
-    # {username: 'humanoid_gregory'}
-    print(new_user)
-    print('attemting to add "sessions" list')
-    new_user['sessions'] = []
-    print(new_user)
+    if(request.method == 'GET'):
+        return '''<h4>This is the root, you need to make a different request, friend</h4>'''
+    elif(request.method == 'POST'):
+        print('post request made - add_new_user')
+        print('attempting to load json')
+        new_user = json.loads(request.data)
+        # {username: 'humanoid_gregory'}
+        print(new_user)
+        print('attemting to add "sessions" list')
+        new_user['sessions'] = []
+        print(new_user)
 
-    target_collection = mongo.db[new_user['username']]
-    print('sending to db.............')
-    result = target_collection.insert_one(new_user)
+        target_collection = mongo.db[new_user['username']]
+        print('sending to db.............')
+        result = target_collection.insert_one(new_user)
 
-    return jsonify({"new_user_id": str(result.inserted_id)})
+        return jsonify({"new_user_id": str(result.inserted_id)})
 
 
 @app.route('/<user_name>', methods=['GET', 'POST'])
@@ -88,6 +91,24 @@ def add_question(user_name, session_name):
             {"$push": {"sessions.$.questions": new_question}}
         )
         return jsonify({"Did work? ": result.modified_count})
+
+
+@app.route('/<user_name>/<session_name>/<question_name>', methods=['POST'])
+def answer_question(user_name, session_name, question_name):
+    if(request.method == 'POST'):
+        print('Post request made to ' + user_name +
+              '/' + session_name + '/' + question_name)
+        # << cheecky workaround, may have to revert
+        target_collection = mongo.db[user_name][session_name]
+        print('targeted dict')
+        new_answer = json.loads(request.data)
+        print('loaded answer data')
+        result = target_collection.insert_one(
+            {"username": user_name, "sessions.session_name": session_name,
+                "sessions.questions.prompt": question_name},
+            {"$push": {"sessions.$.questions.$.answers": new_answer}}
+        )
+        return jsonify({"Did work?": result.modified_count})
 
 
 if __name__ == '__main__':
