@@ -163,8 +163,10 @@ def getSingleRoom(user, session_id):
     return '''<h1> you made a good get request there friend! </h1>'''
 
 
-app.run(host='0.0.0.0')
-
+# app.run(host='0.0.0.0')
+if __name__ == '__main__':
+    # threaded option to enable muptiple instances for multiple user access support (?!?!)
+    app.run(threaded=True, port=5000)
 # flask request methods
 
 #     request.args: the key/value pairs in the URL query string
