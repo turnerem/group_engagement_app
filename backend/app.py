@@ -99,16 +99,20 @@ def answer_question(user_name, session_name, question_name):
         print('Post request made to ' + user_name +
               '/' + session_name + '/' + question_name)
         # << cheecky workaround, may have to revert
-        target_collection = mongo.db[user_name][session_name]
+        target_collection = mongo.db[user_name]
         print('targeted dict')
         new_answer = json.loads(request.data)
         print('loaded answer data')
-        result = target_collection.insert_one(
-            {"username": user_name, "sessions.session_name": session_name,
-                "sessions.questions.prompt": question_name},
-            {"$push": {"sessions.$.questions.$.answers": new_answer}}
+        result = target_collection.update_one(
+            {'$and': [{'sessions.session_name': session_name},
+                      {'sessions.questions.prompt': question_name}]},
+            {'$push': {'sessions.$.questions.answers.$': new_answer}}
+
+            # {"questions.$.prompt": question_name},
+            # {"$push": {"questions.$.answers": new_answer}}
         )
-        return jsonify({"Did work?": result.modified_count})
+        print(result, 'the result')
+        # return jsonify({"Did work?": result.modified_count})
 
 
 if __name__ == '__main__':
