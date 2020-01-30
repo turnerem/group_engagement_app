@@ -43,6 +43,7 @@ Above example will run spec tests and linting with auto-fixing (where it can) be
   - delete remotely: `git push origin --delete sausage-dog`
 - on local machine: switch between branches with `git checkout dev`
 - other peeps may have updated stuff while you've been out on your branch. Pull down these changes: `git pull origin dev`
+- `git fetch`: to see all remote branches. It's kind of like a `git pull`, but for branches
 
 ### (aside)Those pesky Untracked files
 - you can clean these up if you like.
