@@ -5,10 +5,12 @@ from bson.objectid import ObjectId
 import json
 from flask import jsonify
 from flask_pymongo import PyMongo
+from flask_cors import CORS
 import pymongo
 
 # setup app as flask server
 app = Flask(__name__)
+CORS(app)
 # config to look at hosted mongodb database
 db_password = "dancingb"
 db_name = "meetings"
