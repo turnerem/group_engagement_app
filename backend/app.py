@@ -84,7 +84,8 @@ def add_question(user_name, session_name):
         print('post request made - add_quastion')
         new_question = json.loads(request.data)
         new_question['answers'] = []
-        print(new_question)
+        new_question['_id'] = ObjectId()
+        print(new_question, ObjectId())
         target_collection = mongo.db[user_name]
         result = target_collection.update_one(
             {"username": user_name, "sessions.session_name": session_name},
@@ -93,26 +94,25 @@ def add_question(user_name, session_name):
         return jsonify({"Did work? ": result.modified_count})
 
 
-@app.route('/<user_name>/<session_name>/<question_name>', methods=['POST'])
-def answer_question(user_name, session_name, question_name):
+@app.route('/<user_name>/<session_name>/<question_id>', methods=['POST'])
+def answer_question(user_name, session_name, question_id):
     if(request.method == 'POST'):
         print('Post request made to ' + user_name +
-              '/' + session_name + '/' + question_name)
+              '/' + session_name + '/' + question_id)
         # << cheecky workaround, may have to revert
         target_collection = mongo.db[user_name]
         print('targeted dict')
         new_answer = json.loads(request.data)
         print('loaded answer data')
         result = target_collection.update_one(
-            {'$and': [{'sessions.session_name': session_name},
-                      {'sessions.questions.prompt': question_name}]},
-            {'$push': {'sessions.$.questions.answers.$': new_answer}}
+            {'username': user_name, 'sessions._id': question_id},
+            {'$push': {'answers': new_answer}}
 
             # {"questions.$.prompt": question_name},
             # {"$push": {"questions.$.answers": new_answer}}
         )
-        print(result, 'the result')
-        # return jsonify({"Did work?": result.modified_count})
+        # print(result, 'the result')
+        return jsonify({"Did work?": result.matched_count})
 
 
 if __name__ == '__main__':
