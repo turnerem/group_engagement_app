@@ -76,8 +76,6 @@ def add_question(user_name, session_name):
             print(x)
             result.append(x)
             return jsonify(result[0])
-    
-
 
 if __name__ == '__main__':
     # threaded option to enable muptiple instances for multiple user access support (?!?!)
