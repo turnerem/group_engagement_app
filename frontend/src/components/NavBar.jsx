@@ -2,10 +2,7 @@ import React from "react";
 import { Link } from "@reach/router";
 
 function NavBar(props) {
-
-  const handleSignOut = () => {
-    
-  }
+  const handleSignOut = () => {};
 
   if (!props.signedInUser)
     return (
@@ -16,6 +13,9 @@ function NavBar(props) {
         <Link to={"/signIn"}>
           {" "}
           <p>Sign in</p>
+        </Link>
+        <Link to={"/join-session"}>
+          <p>join a session</p>
         </Link>
       </div>
     );
