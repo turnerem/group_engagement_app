@@ -12,6 +12,8 @@ flask-pymongo = "*"
 pymongo = "*"
 dnspython = "*"
 flask-cors = "*"
+pytest = "*"
+pprint = "*"
 
 [requires]
 python_version = "3.7"
