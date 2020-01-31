@@ -29,3 +29,4 @@ class MyTestCase( unittest.TestCase ):
     self.assertTrue(len(data['sessions']) > 0)
     
 
+# spaces in session name? spaces elseqhere?
