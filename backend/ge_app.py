@@ -1,3 +1,5 @@
+# export FLASK_APP=ge_app.py
+
 # import flask and mongodb tools
 from flask import Flask, request
 from bson.json_util import dumps
@@ -28,6 +30,10 @@ def add_new_user():
     print('post request made - add_new_user')
     print('attempting to load json')
     new_user = json.loads(request.data)
+    # does username already exist?
+    names = mongo.db.collection_names()
+    print(names.count(new_user['user_name']) > 0, 'the collection already contains MsFlaps?!?!\n')
+    userAlreadyExists = names.count(new_user['user_name']) > 0
     # {username: 'humanoid_gregory'}
     # print(new_user)
     # print('attemting to add "sessions" list')
@@ -71,7 +77,6 @@ def add_session(user_name):
         )
         return jsonify({"Did work? ": result.modified_count})
 
-# export FLASK_APP=ge_app.py
 
 @app.route('/api/<user_name>/<session_name>', methods=['GET', 'PATCH'])
 def get_session(user_name, session_name):
@@ -96,7 +101,23 @@ def get_session(user_name, session_name):
         target_collection = mongo.db[user_name]
         result = target_collection.update_one(
             {"user_name": user_name, "sessions.session_name": session_name},
-            {"$set": {"sessions": new_session}}
+            {"$set": {"sessions.$": new_session}}
+        )
+        return jsonify({"Did work? ": result.modified_count})
+
+@app.route('/api/<user_name>/<session_name>/<question_id>', methods=['PATCH'])
+def update_question(user_name, session_name, question_id):
+        print('a patch request to question', question_id)
+        new_answers = json.loads(request.data)
+        print(new_answers)
+        target_collection = mongo.db[user_name]
+        result = target_collection.update_one(
+            {
+                "user_name": user_name, 
+                "sessions.session_name": session_name,
+                "sessions.questions": question_id
+            },
+            {"$set": {"sessions.$.questions": new_answers}}
         )
         return jsonify({"Did work? ": result.modified_count})
 
