@@ -1,1 +1,1 @@
-web: python ge_app.py $PORT
+web: gunicorn ge_app:app
