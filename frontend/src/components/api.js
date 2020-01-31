@@ -8,6 +8,18 @@ export const getSessions = signedInUser => {
   });
 };
 
+export const getSingleSession = (signedInUser, sessionName) => {
+  console.log(
+    `making api request for ${baseURL}/${signedInUser}/${sessionName}`
+  );
+  return axios
+    .get(`${baseURL}/${signedInUser}/${sessionName}`)
+    .then(({ data }) => {
+      console.log(data.sessions[0]);
+      return data.sessions[0];
+    });
+};
+
 export const postNewUser = username => {
   console.log("attemping post w");
   return axios.post(`${baseURL}`, { user_name: username }).then(({ data }) => {

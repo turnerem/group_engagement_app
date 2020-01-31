@@ -8,6 +8,8 @@ import SignIn from "./components/SignInForm/SignIn";
 import ViewSessions from "./components/ViewSessions/ViewSessions";
 import RegisterUser from "./components/RegisterUser/RegisterUser";
 import AdminSetRoom from "./components/AdminSetRoom";
+import SessionView from "./components/SessionView/SessionView";
+import { sign } from "crypto";
 
 class App extends Component {
   state = {
@@ -40,6 +42,10 @@ class App extends Component {
           <StudentSessionCode path="/join-session" endpoint={endpoint} />
           <AdminSetRoom path="/admin-set-room" endpoint={endpoint} />
           <ViewSessions path="/my-sessions" signedInUser={signedInUser} />
+          <SessionView
+            path="/my-sessions/:session_name"
+            signedInUser={signedInUser}
+          />
           <RegisterUser path="/register" />
         </Router>
         <button onClick={this.socketTest}>test socket</button>
