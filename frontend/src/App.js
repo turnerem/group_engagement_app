@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 import "./App.css";
 import Header from "./components/Header";
-import SignIn from "./components/SignIn";
 import socketIOClient from "socket.io-client";
 import StudentSessionCode from "./components/StudentSessionCode";
+import SignIn from "./components/SignInForm/SignIn";
+import ViewSessions from "./components/ViewSessions/ViewSessions";
+import RegisterUser from "./components/RegisterUser/RegisterUser";
+import AdminSetRoom from "./components/AdminSetRoom";
 
 class App extends Component {
   state = {
@@ -25,10 +28,14 @@ class App extends Component {
     const { signedInUser } = this.state;
     return (
       <div className="App">
+        <p className="component-identifier">app component</p>
         <Header signedInUser={signedInUser} signUserOut={this.signUserOut} />
         <Router>
           <SignIn path="/signIn" signUserIn={this.signUserIn} />
           <StudentSessionCode path="/join-session" endpoint={endpoint} />
+          <AdminSetRoom path="/my-sessions" endpoint={endpoint} />
+          <ViewSessions path="/my-sessions" />
+          <RegisterUser path="/register" />
         </Router>
         <button onClick={this.socketTest}>test socket</button>
       </div>
