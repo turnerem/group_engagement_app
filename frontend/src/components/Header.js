@@ -6,8 +6,8 @@ function Header(props) {
 
   return (
     <div>
-      <h1>Askxiety</h1>
-      <NavBar signedInUser={signedInUser} signUserOut={signUserOut}/>
+      <h1>AskFast & FastAsk</h1>
+      <NavBar signedInUser={signedInUser} signUserOut={signUserOut} />
     </div>
   );
 }
