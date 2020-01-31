@@ -11,10 +11,10 @@ class ViewSessions extends Component {
 
   render() {
     const { sessions } = this.state;
-    console.log(sessions);
+    const { signedInUser } = this.props;
     return (
       <div>
-        <h2>Your Sessions</h2>
+        <h2>{signedInUser} Sessions</h2>
         <ul>
           {sessions.map((session, index) => {
             return <SessionCard key={index} session={session} />;
@@ -25,11 +25,13 @@ class ViewSessions extends Component {
   }
 
   componentDidMount() {
-    this.fetchSessions();
+    if (this.props.signedInUser) this.fetchSessions();
   }
 
   fetchSessions = () => {
-    getSessions().then(sessions =>
+    const { signedInUser } = this.props;
+
+    getSessions(signedInUser).then(sessions =>
       this.setState({ sessions, isLoading: false })
     );
   };

@@ -13,18 +13,20 @@ class App extends Component {
 
   render() {
     const { signedInUser } = this.state;
+    console.log(signedInUser);
     return (
       <div className="App">
         <p className="component-identifier">app component</p>
         <Header signedInUser={signedInUser} signUserOut={this.signUserOut} />
         <Router>
           <SignIn path="/signIn" signUserIn={this.signUserIn} />
-          <ViewSessions path='/my-sessions'/>
+          <ViewSessions path="/my-sessions" signedInUser={signedInUser} />
           <RegisterUser path="/register" />
         </Router>
       </div>
     );
   }
+
   signUserIn = user => {
     this.setState({ signedInUser: user });
   };
