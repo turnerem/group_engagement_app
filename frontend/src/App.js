@@ -4,6 +4,7 @@ import "./App.css";
 import Header from "./components/Header";
 import SignIn from "./components/SignInForm/SignIn";
 import ViewSessions from "./components/ViewSessions/ViewSessions";
+import RegisterUser from "./components/RegisterUser/RegisterUser";
 
 class App extends Component {
   state = {
@@ -19,6 +20,7 @@ class App extends Component {
         <Router>
           <SignIn path="/signIn" signUserIn={this.signUserIn} />
           <ViewSessions path='/my-sessions'/>
+          <RegisterUser path="/register" />
         </Router>
       </div>
     );
