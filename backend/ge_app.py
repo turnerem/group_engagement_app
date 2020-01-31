@@ -113,6 +113,10 @@ def get_session(user_name, session_name):
         )
         return jsonify({"Did work? ": result.modified_count})
 
+# @app.route('/api/<user_name>/<session_name>', methods=['DELETE'])
+# def delete_session(user_name, session_name):
+
+
 @app.route('/api/<user_name>/<session_name>/<question_id>', methods=['PATCH'])
 def update_question(user_name, session_name, question_id):
         print('a patch request to question', question_id)
