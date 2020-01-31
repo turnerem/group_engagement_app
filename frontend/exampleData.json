@@ -1,0 +1,44 @@
+{
+  "sessions": [
+    {
+      "questions": {
+        "Are Catular?": {
+          "no": 0,
+          "yes": 0
+        },
+        "Shall we use dogs and paper instead?": {
+          "no": 0,
+          "yes": 0
+        }
+      },
+      "session_name": "Catular"
+    },
+    {
+      "questions": {
+        "Are Catular?": {
+          "no": 0,
+          "yes": 0
+        },
+        "Shall we use dogs and paper instead?": {
+          "no": 0,
+          "yes": 0
+        }
+      },
+      "session_name": "Catular and Dogular"
+    },
+    {
+      "questions": {
+        "Are Catular?": {
+          "no": 0,
+          "yes": 0
+        },
+        "Shall we use dogs and paper instead?": {
+          "no": 0,
+          "yes": 0
+        }
+      },
+      "session_name": "CatularandDogular"
+    }
+  ],
+  "user_name": "PollyPocket"
+}
