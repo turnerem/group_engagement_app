@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getSessions } from "../api";
+import SessionCard from "./SessionCard";
 
 class ViewSessions extends Component {
   state = {
@@ -9,12 +10,18 @@ class ViewSessions extends Component {
   };
 
   render() {
-    const {sessions} = this.state
-    console.log(sessions)
-    return <div>
-
-
-    </div>;
+    const { sessions } = this.state;
+    console.log(sessions);
+    return (
+      <div>
+        <h2>Your Sessions</h2>
+        <ul>
+          {sessions.map((session, index) => {
+            return <SessionCard key={index} session={session} />;
+          })}
+        </ul>
+      </div>
+    );
   }
 
   componentDidMount() {
@@ -22,8 +29,8 @@ class ViewSessions extends Component {
   }
 
   fetchSessions = () => {
-    getSessions().then(
-      data => this.setState({ sessions: data.sessions, isLoading: false })
+    getSessions().then(sessions =>
+      this.setState({ sessions, isLoading: false })
     );
   };
 }
