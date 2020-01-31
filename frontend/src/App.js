@@ -3,6 +3,7 @@ import { Router } from "@reach/router";
 import "./App.css";
 import Header from "./components/Header";
 import SignIn from "./components/SignInForm/SignIn";
+import RegisterUser from "./components/RegisterUser/RegisterUser";
 
 class App extends Component {
   state = {
@@ -17,6 +18,7 @@ class App extends Component {
         <Header signedInUser={signedInUser} signUserOut={this.signUserOut} />
         <Router>
           <SignIn path="/signIn" signUserIn={this.signUserIn} />
+          <RegisterUser path="/register" />
         </Router>
       </div>
     );
