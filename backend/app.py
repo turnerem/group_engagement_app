@@ -22,7 +22,7 @@ mongo = PyMongo(app)
 
 
 # On root request
-@app.route('/', methods=['POST'])
+@app.route('/api', methods=['POST'])
 def add_new_user():
     print('post request made - add_new_user')
     print('attempting to load json')
@@ -40,7 +40,7 @@ def add_new_user():
     return jsonify({"new_user_id": str(result.inserted_id)})
 
 
-@app.route('/<user_name>', methods=['GET', 'POST'])
+@app.route('/api/<user_name>', methods=['GET', 'POST'])
 def add_session(user_name):
     if(request.method == 'GET'):
         print('GET request made to /' + user_name)
@@ -64,7 +64,7 @@ def add_session(user_name):
         return jsonify({"Did work? ": result.modified_count})
 
 
-@app.route('/<user_name>/<session_name>', methods=['GET'])
+@app.route('/api/<user_name>/<session_name>', methods=['GET'])
 def add_question(user_name, session_name):
     if(request.method == 'GET'):
         print('\n\nget req made to ' + user_name + '/' + session_name)
