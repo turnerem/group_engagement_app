@@ -1,14 +1,16 @@
 import React from "react";
-import NavBar from "./NavBar";
+import NavBar from "../NavBar/NavBar";
+import "./Header.css";
 
 function Header(props) {
   const { signedInUser, signUserOut } = props;
 
   return (
-    <div>
-      <h1>AskFast & FastAsk</h1>
+    <header id="app-header">
+      <p className="component-identifier">header component</p>
+      <h1>AskFastAndFastAns</h1>
       <NavBar signedInUser={signedInUser} signUserOut={signUserOut} />
-    </div>
+    </header>
   );
 }
 

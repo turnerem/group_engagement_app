@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 import "./App.css";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import SignIn from "./components/SignInForm/SignIn";
 import ViewSessions from "./components/ViewSessions/ViewSessions";
 import RegisterUser from "./components/RegisterUser/RegisterUser";
