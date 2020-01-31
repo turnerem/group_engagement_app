@@ -32,9 +32,13 @@ class App extends Component {
         <p className="component-identifier">app component</p>
         <Header signedInUser={signedInUser} signUserOut={this.signUserOut} />
         <Router>
-          <SignIn path="/signIn" signUserIn={this.signUserIn} />
+          <SignIn
+            path="/signIn"
+            signUserIn={this.signUserIn}
+            signUserOut={this.signUserOut}
+          />
           <StudentSessionCode path="/join-session" endpoint={endpoint} />
-          <AdminSetRoom path="/my-sessions" endpoint={endpoint} />
+          <AdminSetRoom path="/admin-set-room" endpoint={endpoint} />
           <ViewSessions path="/my-sessions" signedInUser={signedInUser} />
           <RegisterUser path="/register" />
         </Router>
