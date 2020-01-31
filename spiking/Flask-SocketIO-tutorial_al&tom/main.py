@@ -11,7 +11,7 @@ socketio = SocketIO(app, cors_allowed_origins='*')
 @app.route('/')
 # def sessions():
 #     return render_template('session.html')
-def messageReceived(methods=['GET', 'POST']):
+def messageReceived(methods=['GET', 'POST']):   
     print('message was received!!!')
 
 
