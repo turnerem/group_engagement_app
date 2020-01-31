@@ -27,24 +27,22 @@ mongo = PyMongo(app)
 # On root request
 @app.route('/api', methods=['POST'])
 def add_new_user():
-    print('post request made - add_new_user')
-    print('attempting to load json')
+
     new_user = json.loads(request.data)
     # does username already exist?
     names = mongo.db.collection_names()
-    print(names.count(new_user['user_name']) > 0, 'the collection already contains MsFlaps?!?!\n')
     userAlreadyExists = names.count(new_user['user_name']) > 0
     # {username: 'humanoid_gregory'}
     # print(new_user)
     # print('attemting to add "sessions" list')
-    new_user['sessions'] = []
-    pp.pprint(new_user)
-
-    target_collection = mongo.db[new_user['user_name']]
-    print('sending to db.............')
-    result = target_collection.insert_one(new_user)
-
-    return jsonify({"new_user_id": str(result.inserted_id)})
+    if (userAlreadyExists):
+        return jsonify({"status": 409, "msg": "Please provide unique username"})
+    else:
+        new_user['sessions'] = []
+        pp.pprint(new_user)
+        target_collection = mongo.db[new_user['user_name']]
+        result = target_collection.insert_one(new_user)
+        return jsonify({"status": 201, "insert_id": str(result.inserted_id)})
 
 
 @app.route('/api/<user_name>', methods=['GET', 'POST'])
@@ -76,6 +74,16 @@ def add_session(user_name):
             {"$push": {'sessions': new_session}}
         )
         return jsonify({"Did work? ": result.modified_count})
+
+@app.route('/api/<user_name>', methods=['DELETE'])
+def delete_account(user_name):
+    names = mongo.db.collection_names()
+    userAlreadyExists = names.count(user_name) > 0
+    if (userAlreadyExists):
+        del_collection = mongo.db[user_name].drop()
+        return jsonify({"status": 204})
+    else:
+      return jsonify({"status": 400})
 
 
 @app.route('/api/<user_name>/<session_name>', methods=['GET', 'PATCH'])
