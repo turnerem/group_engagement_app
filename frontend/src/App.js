@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 import "./App.css";
-import Header from "./components/Header";
 import socketIOClient from "socket.io-client";
 import StudentSessionCode from "./components/StudentSessionCode";
+import Header from "./components/Header/Header";
 import SignIn from "./components/SignInForm/SignIn";
 import ViewSessions from "./components/ViewSessions/ViewSessions";
 import RegisterUser from "./components/RegisterUser/RegisterUser";
@@ -26,6 +26,7 @@ class App extends Component {
   render() {
     const { endpoint } = this.state;
     const { signedInUser } = this.state;
+    console.log(signedInUser);
     return (
       <div className="App">
         <p className="component-identifier">app component</p>
@@ -34,7 +35,7 @@ class App extends Component {
           <SignIn path="/signIn" signUserIn={this.signUserIn} />
           <StudentSessionCode path="/join-session" endpoint={endpoint} />
           <AdminSetRoom path="/my-sessions" endpoint={endpoint} />
-          <ViewSessions path="/my-sessions" />
+          <ViewSessions path="/my-sessions" signedInUser={signedInUser} />
           <RegisterUser path="/register" />
         </Router>
         <button onClick={this.socketTest}>test socket</button>

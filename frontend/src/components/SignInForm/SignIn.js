@@ -10,6 +10,8 @@ class SignIn extends Component {
     const { userNameInput } = this.state;
     return (
       <form onSubmit={this.handleSubmit} id="signin-form">
+        <p className="component-identifier">Signin component</p>
+
         <label>
           Enter your username:{" "}
           <input

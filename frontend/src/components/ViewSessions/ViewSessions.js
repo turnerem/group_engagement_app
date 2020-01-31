@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getSessions } from "../api";
 import SessionCard from "./SessionCard";
+import "./ViewSessions.css";
 
 class ViewSessions extends Component {
   state = {
@@ -11,13 +12,15 @@ class ViewSessions extends Component {
 
   render() {
     const { sessions } = this.state;
-    console.log(sessions);
+    const { signedInUser } = this.props;
     return (
-      <div>
-        <h2>Your Sessions</h2>
+      <div id="view-sessions-container">
+        <p className="component-identifier">ViewSessions component</p>
+
+        <h2>{signedInUser} Sessions</h2>
         <ul>
           {sessions.map((session, index) => {
-            return <SessionCard key={index} session={session} />;
+            return <SessionCard key={session.session_name} session={session} />;
           })}
         </ul>
       </div>
@@ -25,11 +28,13 @@ class ViewSessions extends Component {
   }
 
   componentDidMount() {
-    this.fetchSessions();
+    if (this.props.signedInUser) this.fetchSessions();
   }
 
   fetchSessions = () => {
-    getSessions().then(sessions =>
+    const { signedInUser } = this.props;
+
+    getSessions(signedInUser).then(sessions =>
       this.setState({ sessions, isLoading: false })
     );
   };
