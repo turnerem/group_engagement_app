@@ -15,3 +15,9 @@ export const postNewUser = username => {
     return data;
   });
 };
+
+export const postNewSession = signedInUser => {
+  return axios.post(`${baseURL}/${signedInUser}`).then(({ data }) => {
+    return data;
+  });
+};

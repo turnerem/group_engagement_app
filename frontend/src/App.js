@@ -8,6 +8,7 @@ import SignIn from "./components/SignInForm/SignIn";
 import ViewSessions from "./components/ViewSessions/ViewSessions";
 import RegisterUser from "./components/RegisterUser/RegisterUser";
 import AdminSetRoom from "./components/AdminSetRoom";
+import CreateSession from "./components/CreateSession/CreateSession";
 
 class App extends Component {
   state = {
@@ -41,6 +42,7 @@ class App extends Component {
           <AdminSetRoom path="/admin-set-room" endpoint={endpoint} />
           <ViewSessions path="/my-sessions" signedInUser={signedInUser} />
           <RegisterUser path="/register" />
+          <CreateSession path="/create-session" />
         </Router>
         <button onClick={this.socketTest}>test socket</button>
       </div>
