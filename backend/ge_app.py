@@ -7,6 +7,7 @@ from flask import jsonify
 from flask_pymongo import PyMongo
 from flask_cors import CORS
 import pymongo
+import pprint as pp
 
 # setup app as flask server
 app = Flask(__name__)
@@ -31,7 +32,7 @@ def add_new_user():
     # print(new_user)
     # print('attemting to add "sessions" list')
     new_user['sessions'] = []
-    print(new_user)
+    pp.pprint(new_user)
 
     target_collection = mongo.db[new_user['user_name']]
     print('sending to db.............')
@@ -56,10 +57,10 @@ def add_session(user_name):
         # obj = next(cursor_obj, None)
         # if obj:
         #     print(obj)
-        
     elif(request.method == 'POST'):
         print('post request made - add_session')
         new_session = json.loads(request.data)
+
         # {"session_name": "how to be a human"}
         print(new_session)
 
@@ -70,9 +71,12 @@ def add_session(user_name):
         )
         return jsonify({"Did work? ": result.modified_count})
 
+# export FLASK_APP=ge_app.py
 
-@app.route('/api/<user_name>/<session_name>', methods=['GET'])
-def add_question(user_name, session_name):
+@app.route('/api/<user_name>/<session_name>', methods=['GET', 'PATCH'])
+def get_session(user_name, session_name):
+    print(request.method, 'the method')
+    if (request.method == 'GET'):
         print('\n\nget req made to ' + user_name + '/' + session_name)
         target_collection = mongo.db[user_name]
         cursor_obj = target_collection.find(
@@ -85,18 +89,22 @@ def add_question(user_name, session_name):
             print(x)
             result.append(x)
             return jsonify(result[0])
-
-
-@app.route('/api/<user_name>/<session_name>', methods=['PATCH'])
-def update_session(user_name, session_name):
+    elif (request.method == 'PATCH'):
         print('a patch request to session', session_name)
         new_session = json.loads(request.data)
         print(new_session)
         target_collection = mongo.db[user_name]
         result = target_collection.update_one(
             {"user_name": user_name, "sessions.session_name": session_name},
-            {"$set": {"sessions.questions": new_session}}
+            {"$set": {"sessions": new_session}}
         )
+        return jsonify({"Did work? ": result.modified_count})
+
+
+
+# @app.route('/api/<user_name>/<session_name>', methods=['PATCH'])
+# def update_session(user_name, session_name):
+#     # if (request.method == 'PATCH'):
 
 
 if __name__ == '__main__':
