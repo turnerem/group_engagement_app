@@ -10,6 +10,7 @@ import RegisterUser from "./components/RegisterUser/RegisterUser";
 import AdminSetRoom from "./components/AdminSetRoom";
 import SessionView from "./components/SessionView/SessionView";
 import { sign } from "crypto";
+import CreateSession from "./components/CreateSession/CreateSession";
 
 class App extends Component {
   state = {
@@ -47,6 +48,7 @@ class App extends Component {
             signedInUser={signedInUser}
           />
           <RegisterUser path="/register" />
+          <CreateSession path="/create-session" />
         </Router>
         <button onClick={this.socketTest}>test socket</button>
       </div>
