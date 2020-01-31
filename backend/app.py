@@ -45,11 +45,18 @@ def add_session(user_name):
     if(request.method == 'GET'):
         print('GET request made to /' + user_name)
         target_collection = mongo.db[user_name]
+        print('made target_collection')
         cursor_obj = target_collection.find({}, {'_id': 0})
+        print('found something')
         result = []
         for x in cursor_obj:
+            print('x part')
             result.append(x)
         return jsonify(result[0])
+        # obj = next(cursor_obj, None)
+        # if obj:
+        #     print(obj)
+        
     elif(request.method == 'POST'):
         print('post request made - add_session')
         new_session = json.loads(request.data)
