@@ -25,6 +25,7 @@
   height: 71px;
   width: 100%;
   border-radius: 3px;
+  margin: 1em 0;
 }
 
 #register-username-input {
@@ -34,4 +35,5 @@
   border: 0;
   font-size: 20px;
   text-indent: 10px;
+  margin: 1em 0;
 }

@@ -16,6 +16,10 @@
   flex-direction: column;
 }
 
+#signin-container p {
+  padding: 0.5em 0;
+}
+
 #signin-title {
   text-align: left;
   padding: 20px 0 0 0 ;
@@ -56,7 +60,7 @@
   padding: 0 2em;
   text-align: left;
   cursor: pointer;
-  width: 80%;
+  /* width: 80%; */
   display: flex;
   flex-direction: row;
   align-items: center;

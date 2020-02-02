@@ -4,6 +4,7 @@ import PreparedSessionCard from "./PreparedSessionCard";
 import {Link} from '@reach/router'
 import "./ViewSessions.css";
 import * as data from '../../exampleData.json'
+import PreviousSessionCard from "./PreviousSessionCard";
 
 class ViewSessions extends Component {
   state = {
@@ -30,8 +31,8 @@ class ViewSessions extends Component {
 
  <Link to='/create-session' >
    <button id='create-session-btn'>Create a new session</button>
-   <p>Prepared sessions</p>
  </Link>
+   <p className='session-list-type'>Prepared sessions</p>
         <ul id='prepared-session-list'>
           {sessions.map((session, index) => {
             return <PreparedSessionCard key={session.session_name} session={session} />;
@@ -39,7 +40,8 @@ class ViewSessions extends Component {
         </ul>
       </div>
       <div id='view-previous-container'>
-          <p>Previous Sessions</p>
+          <p className='session-list-type'>Previous Sessions</p>
+          <PreviousSessionCard session={{session_name: 'Fundamentals Day 1 Review', questions: new Array(9), date_presented: new Date()}} />
       </div>
       </>
     );

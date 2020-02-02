@@ -1,8 +1,8 @@
-/* @font-face{
-  font-family: 'GT Pressura Pro';
-  src: url('./GT-Pressura-Pro-Regular.woff2') format('woff2');
+@font-face{
+  font-family: 'ETC Grandstander';
+  src: url('./GrandstanderVariable.woff2');
   font-weight: 1 999;
-} */
+}
 
 body {
   margin: 0;
@@ -17,6 +17,7 @@ p, span, a, h1, h2, h3, h4 ,h5 {
 }
 a:link {
   text-decoration: none;
+  color: white;
 }
 ul,li { list-style-type: none;
   list-style-position:inside;

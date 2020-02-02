@@ -2,7 +2,7 @@
   background: #1f1f1f;
   border-radius: 8px;
   /* width: 100%; */
-  margin: 2em 0;
+  margin: 1em 0;
   border: 1px solid black;
   padding: 1em 1.5em;
   display: flex;
@@ -10,7 +10,7 @@
   justify-content: space-between;
 }
 
-.session-card-info > li,
+.session-card-info > li >
 p {
   text-align: left;
   /* text-indent: 1em; */
@@ -29,8 +29,9 @@ p {
 .start-session-btn {
   background: #00fbdd;
   border: 0;
-  padding: 20px;
+  padding: 20px 50px;
   border-radius: 8px; margin-bottom: 0.5em;
+  cursor: pointer;
 }
 
 .edit-session-btn {
@@ -39,4 +40,9 @@ p {
   border: 0;
   padding: 10px 20px;
   border-radius: 8px;
+  cursor: pointer;
+}
+
+.session-time {
+  color: rgb(134, 134, 134);
 }
