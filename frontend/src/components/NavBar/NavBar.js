@@ -8,7 +8,7 @@ function NavBar(props) {
   if (!props.signedInUser)
     return (
       <nav id="app-nav">
-        <p className="component-identifier">nav component</p>
+        {/* <p className="component-identifier">nav component</p> */}
 
         <Link to={"/register"}>
           <p> New User </p>
@@ -18,7 +18,7 @@ function NavBar(props) {
           <p>Sign in</p>
         </Link>
         <Link to={"/join-session"}>
-          <p>join a session</p>
+          <p>Join a session</p>
         </Link>
       </nav>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
+import './StudentSessionCode.css'
 
 class StudentSessionCode extends Component {
   state = {
@@ -11,7 +12,7 @@ class StudentSessionCode extends Component {
     const { sessionCodeInput, roomEntered } = this.state;
     if (roomEntered) {
       return (
-        <div>
+        <div id='student-session-code-container'>
           {" "}
           <p>You have entered a room </p>
           <button onClick={this.resetRoom}>reset</button>{" "}
@@ -20,17 +21,21 @@ class StudentSessionCode extends Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Enter The Room Code:{" "}
+      <div id='student-session-code-container'>
+      <h2 id='join-room-title'>Join a room</h2>
+      <span id='join-room-subtitle'>Take part in someone else's session!</span>
+      <form onSubmit={this.handleSubmit} id='join-room-form'>
+
+        <label htmlFor='join-room-input' id='join-room-label'>Enter The Room Code:{" "}</label>
           <input
             value={sessionCodeInput}
             onChange={this.handleChange}
             type="text"
+            id='join-room-input'
           ></input>
-          <button type="submit">Submit</button>
-        </label>
+          <button type="submit" id='join-room-btn'>Join a room</button>
       </form>
+      </div>
     );
   }
 

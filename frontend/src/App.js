@@ -2,15 +2,10 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 import "./App.css";
 import socketIOClient from "socket.io-client";
-import StudentSessionCode from "./components/StudentSessionCode";
 import Header from "./components/Header/Header";
-import SignIn from "./components/SignInForm/SignIn";
-import ViewSessions from "./components/ViewSessions/ViewSessions";
 import RegisterUser from "./components/RegisterUser/RegisterUser";
-import AdminSetRoom from "./components/AdminSetRoom";
-import SessionView from "./components/SessionView/SessionView";
-import { sign } from "crypto";
-import CreateSession from "./components/CreateSession/CreateSession";
+import Home from "./components/Home/Home";
+import ViewSessions from './components/ViewSessions/ViewSessions'
 
 class App extends Component {
   state = {
@@ -31,27 +26,18 @@ class App extends Component {
     const { signedInUser } = this.state;
     console.log(signedInUser);
     return (
+     
       <div className="App">
-        <p className="component-identifier">app component</p>
+        {/* <p className="component-identifier">app component</p> */}
         <Header signedInUser={signedInUser} signUserOut={this.signUserOut} />
         <Router>
-          <SignIn
-            path="/signIn"
-            signUserIn={this.signUserIn}
-            signUserOut={this.signUserOut}
-          />
-          <StudentSessionCode path="/join-session" endpoint={endpoint} />
-          <AdminSetRoom path="/admin-set-room" endpoint={endpoint} />
-          <ViewSessions path="/my-sessions" signedInUser={signedInUser} />
-          <SessionView
-            path="/my-sessions/:session_name"
-            signedInUser={signedInUser}
-          />
-          <RegisterUser path="/register" />
-          <CreateSession path="/create-session" />
+          <Home signUserIn={this.signUserIn} default/>
+          <RegisterUser path='/register'/>
+          <ViewSessions path='/sessions' signedInUser={signedInUser}/>
         </Router>
-        <button onClick={this.socketTest}>test socket</button>
-      </div>
+       </div>
+       
+      
     );
   }
 
@@ -72,3 +58,23 @@ class App extends Component {
 }
 
 export default App;
+
+
+ {/* <Router>
+          <SignIn
+            path="/signIn"
+            signUserIn={this.signUserIn}
+            signUserOut={this.signUserOut}
+          />
+          {/* <StudentSessionCode path="/join-session" endpoint={endpoint} /> */}
+          {/* <AdminSetRoom path="/admin-set-room" endpoint={endpoint} />
+          <ViewSessions path="/my-sessions" signedInUser={signedInUser} />
+          <SessionView
+            path="/my-sessions/:session_name"
+            signedInUser={signedInUser}
+          />
+          <RegisterUser path="/register" />
+          <CreateSession path="/create-session" />
+        </Router>
+        <button onClick={this.socketTest}>test socket</button> */}
+  

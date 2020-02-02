@@ -1,3 +1,19 @@
 #app-header {
-  background-color: rgb(255, 215, 140);
+  background-color: #00D1B8;
+  padding: 2em;
+}
+
+#app-header h1 {
+  color: rgb(0, 0, 0);
+  font-family: 'GT Pressura Pro';
+  /* font-variation-settings: 'wght' 100; */
+  font-size: 4em
+}
+
+#askfast {
+ color:#00FBDD;
+}
+
+#fastans {
+  color: #049987;
 }

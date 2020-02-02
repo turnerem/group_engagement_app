@@ -1,0 +1,11 @@
+#home-container {
+    display: grid;
+     grid-template-columns: 2fr 1fr;
+     grid-template-areas: sessionCode regLogIn;
+     
+}
+
+#session-code {
+    grid-area: sessionCode;
+    background-color: black;
+}

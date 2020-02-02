@@ -1,3 +1,36 @@
-#view-sessions-container {
-  background-color: rgb(168, 226, 168);
+#view-prepared-container {
+  /* background-color: rgb(168, 226, 168); */
+  color: white;
+  padding: 3em 15em;
+  background-color: #2D2D2E;;
+}
+
+#view-prepared-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+#view-prepared-header h2 {
+  font-size: 30px;
+}
+
+
+#create-session-btn {
+  background: #FF417A;
+  color: white;
+  border: 0;
+  width: 100%;
+  padding: 31px;
+  border-radius: 3px;
+}
+
+#prepared-session-list {
+  list-style: none;
+}
+
+#view-previous-container{
+  color: white;
+  padding: 3em 15em;
 }

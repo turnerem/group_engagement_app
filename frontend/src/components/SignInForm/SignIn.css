@@ -1,4 +1,68 @@
 #signin-form {
-  background-color: bisque;
-  border: 1px solid black;
+  background-color: #161616;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+}
+
+#signin-container {
+  padding: 4em 1em;
+  color: white;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+#signin-title {
+  text-align: left;
+  padding: 20px 0 0 0 ;
+}
+
+#signin-btn {
+  padding: 24px 100px;
+  background: rgba(77, 77, 77, 0.8);
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  width: 80%;
+  cursor: pointer;
+}
+
+#signin-input {
+  width: 80%;
+  height: 56px;
+  border-radius: 3px;
+  border: 0;
+  font-size: 20px;
+  text-indent: 10px;
+  margin: 1.5em 0;
+}
+
+#create-account-link {
+  color: #00d1b8;
+  text-decoration: underline;
+}
+
+.aux-button {
+  background: #000000;
+  border: 0;
+  color: white;
+  border-radius: 6px;
+  width: 293px;
+  height: 52px;
+  padding: 0 2em;
+  text-align: left;
+  cursor: pointer;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 1.5em 0;
+}
+
+.aux-button  span{
+  padding: 0 10px
 }

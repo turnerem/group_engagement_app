@@ -1,4 +1,37 @@
 #register-container {
-  background-color: yellow;
-  border: solid 1px black;
+  /* background-color: yellow;
+  border: solid 1px black; */
+  color: white;
+  padding: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+#register-container h2 {
+  font-size: 4em;
+}
+
+#register-form {
+  display: flex;
+  flex-direction: column;
+  width: 20em;
+  padding: 3em;
+}
+#register-btn {
+  background: #00FBDD;
+  border: 0;
+  height: 71px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+#register-username-input {
+  width: 100%;
+  height: 56px;
+  border-radius: 3px;
+  border: 0;
+  font-size: 20px;
+  text-indent: 10px;
 }
