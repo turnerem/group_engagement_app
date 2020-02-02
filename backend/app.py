@@ -127,7 +127,7 @@ def update_question(user_name, session_name, question_id):
 
 if __name__ == '__main__':
     # threaded option to enable muptiple instances for multiple user access support (?!?!)
-    app.run(threaded=True, port=5000)
+    app.run(threaded=True, host='0.0.0.0', port=5000)
 # flask request methods
 
 #     request.args: the key/value pairs in the URL query string
