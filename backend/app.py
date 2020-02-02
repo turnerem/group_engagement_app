@@ -10,6 +10,7 @@ from flask_pymongo import PyMongo
 from flask_cors import CORS
 import pymongo
 import pprint as pp
+import re
 
 # setup app as flask server
 app = Flask(__name__)
@@ -53,10 +54,8 @@ def add_session(user_name):
         result = []
         for x in cursor_obj:
             result.append(x)
-        return jsonify(result[0])
-        # obj = next(cursor_obj, None)
-        # if obj:
-        #     print(obj)
+        return jsonify({'status': 200, 'data': result[0]})
+
     elif(request.method == 'POST'):
         new_session = json.loads(request.data)
         target_collection = mongo.db[user_name]
