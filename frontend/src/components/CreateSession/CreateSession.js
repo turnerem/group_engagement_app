@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { postNewSession } from "../api";
+import "./CreateSession.css";
 
 class CreateSession extends Component {
   state = {
-    sessionName: "",
+    session_name: "",
     questions: {},
     questionTitle: ""
   };
 
   render() {
+    console.log(this.state.session_name);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -16,7 +18,7 @@ class CreateSession extends Component {
             Session Name
             <input
               onChange={e => {
-                this.handleChange(e.target.value, "sessionName");
+                this.handleChange(e.target.value, "session_name");
               }}
             />
           </label>
@@ -29,22 +31,23 @@ class CreateSession extends Component {
             />
           </label>
           <select name="" id="">
-            <option value="">yes-no</option>
+            <option value={{ yes: 0, no: 0 }}>yes-no</option>
             <option value="">text</option>
           </select>
-          <button>create sesh</button>
+          <button>add a question</button>
         </form>
-        <h3>{this.state.sessionName}</h3>
+        <h3>{this.state.session_name}</h3>
         <ul>
-          {Object.keys(this.state.questions).map(question => {
+          {Object.keys(this.state.questions).map((question, index) => {
             return (
-              <li>
+              <li key={index}>
                 <p>{question}</p>
                 <p>{String(this.state.questions[question])}</p>
               </li>
             );
           })}
         </ul>
+        <button onClick={this.handleCreateSession}>create sesh</button>
       </div>
     );
   }
@@ -62,8 +65,23 @@ class CreateSession extends Component {
   };
 
   handleChange = (value, key) => {
-    console.log(value);
     this.setState({ [key]: value });
+  };
+
+  handleCreateSession = () => {
+    const { session_name, questions } = this.state;
+
+    postNewSession("JessJelly", session_name, questions);
+    // this.setState({
+    //   session_name: session_name,
+    //   questions: questions,
+    //   questionTitle: questionTitle
+    // });
+    this.setState({
+      session_name: "",
+      questions: "",
+      questionTitle: ""
+    });
   };
 }
 
