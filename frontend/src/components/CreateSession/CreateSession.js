@@ -6,11 +6,12 @@ class CreateSession extends Component {
   state = {
     session_name: "",
     questions: {},
-    questionTitle: ""
+    questionTitle: "",
+    type: { no: 0, yes: 0 }
   };
 
   render() {
-    console.log(this.state.session_name);
+    console.log(this.state);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -28,10 +29,11 @@ class CreateSession extends Component {
               onChange={e => {
                 this.handleChange(e.target.value, "questionTitle");
               }}
+              required
             />
           </label>
-          <select name="" id="">
-            <option value={{ yes: 0, no: 0 }}>yes-no</option>
+          <select onChange={this.selectType}>
+            <option value={{ no: 0, yes: 0 }}>yes-no</option>
             <option value="">text</option>
           </select>
           <button>add a question</button>
@@ -42,7 +44,7 @@ class CreateSession extends Component {
             return (
               <li key={index}>
                 <p>{question}</p>
-                <p>{String(this.state.questions[question])}</p>
+                <p>{JSON.stringify(this.state.questions[question])}</p>
               </li>
             );
           })}
@@ -54,11 +56,12 @@ class CreateSession extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const { type } = this.state;
     this.setState(currentState => {
       return {
         questions: {
           ...currentState.questions,
-          [this.state.questionTitle]: { yes: 0, no: 0 }
+          [this.state.questionTitle]: type
         }
       };
     });
@@ -70,18 +73,18 @@ class CreateSession extends Component {
 
   handleCreateSession = () => {
     const { session_name, questions } = this.state;
+    postNewSession("JessJelly", session_name, questions).then(
+      this.setState({
+        session_name: "",
+        questions: {},
+        questionTitle: ""
+      })
+    );
+  };
 
-    postNewSession("JessJelly", session_name, questions);
-    // this.setState({
-    //   session_name: session_name,
-    //   questions: questions,
-    //   questionTitle: questionTitle
-    // });
-    this.setState({
-      session_name: "",
-      questions: "",
-      questionTitle: ""
-    });
+  selectType = event => {
+    const { value } = event.target;
+    this.setState({ type: value });
   };
 }
 
