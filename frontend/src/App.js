@@ -6,12 +6,9 @@ import Header from "./components/Header/Header";
 import RegisterUser from "./components/RegisterUser/RegisterUser";
 import Home from "./components/Home/Home";
 import ViewSessions from "./components/ViewSessions/ViewSessions";
-<<<<<<< HEAD
 import CreateSession from "./components/CreateSession/CreateSession";
-=======
 import SessionView from "./components/SessionView/SessionView";
 import Audience from "./components/Audience/Audience";
->>>>>>> 9753c5d0a281d4bd6e24116e8ed557c2ba6e19f1
 
 class App extends Component {
   state = {
@@ -39,15 +36,12 @@ class App extends Component {
           <Home signUserIn={this.signUserIn} default />
           <RegisterUser path="/register" />
           <ViewSessions path="/sessions" signedInUser={signedInUser} />
-<<<<<<< HEAD
           <CreateSession path="/create-session" signedInUser={signedInUser} />
-=======
           <SessionView
             path="/sessions/:session_name"
             signedInUser={signedInUser}
           />
           <Audience path="/joined-session/:room_code" />
->>>>>>> 9753c5d0a281d4bd6e24116e8ed557c2ba6e19f1
         </Router>
       </div>
     );
