@@ -7,6 +7,7 @@ import RegisterUser from "./components/RegisterUser/RegisterUser";
 import Home from "./components/Home/Home";
 import ViewSessions from "./components/ViewSessions/ViewSessions";
 import SessionView from "./components/SessionView/SessionView";
+import Audience from "./components/Audience/Audience";
 
 class App extends Component {
   state = {
@@ -38,6 +39,7 @@ class App extends Component {
             path="/sessions/:session_name"
             signedInUser={signedInUser}
           />
+          <Audience path="/joined-session/:room_code" />
         </Router>
       </div>
     );
