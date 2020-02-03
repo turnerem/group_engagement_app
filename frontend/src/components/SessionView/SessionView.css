@@ -1,3 +1,19 @@
 #session-view-container {
-  background-color: rgb(222, 186, 248);
+  background-color: #2d2d2e;
+  color: white;
+  text-align: left;
+  padding: 3em 7em;
+}
+
+#session-view-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2em 0;
+}
+
+#live-data-view {
+  background-color: rgb(207, 207, 207);
+  color: black;
+  padding: 10em;
 }

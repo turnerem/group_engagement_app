@@ -1,20 +1,24 @@
 .previous-session-card {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background: #1f1f1f;
-    border: 0;
-    text-align: left;
-    padding: 1em 1.5em;
-    border-radius: 8px;
-    margin: 1em 0;
-    line-height: 2em;
-} 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: #1f1f1f;
+  color: white;
+  border: 0;
+  text-align: left;
+  padding: 1em 1.5em;
+  border-radius: 8px;
+  margin: 1em 0;
+  line-height: 2em;
+  text-align: left;
+}
 
+.previous-analysis-btn {
+  padding: 45px 70px;
+  background: #272727;
+  border: 0;
+}
 
-.previous-analysis-btn{
-    padding: 45px 70px;
-    background:  #272727;
-    border: 0;
-    color: white;;
+.session-name {
+  color: white;
 }
