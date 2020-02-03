@@ -29,8 +29,11 @@ export const postNewUser = username => {
   });
 };
 
-export const postNewSession = signedInUser => {
-  return axios.post(`${baseURL}/${signedInUser}`).then(({ data }) => {
-    return data;
-  });
+export const postNewSession = (signedInUser, session_name, questions) => {
+  console.log(session_name, questions);
+  return axios
+    .post(`${baseURL}/${signedInUser}`, { session_name, questions })
+    .then(({ data }) => {
+      return data;
+    });
 };
