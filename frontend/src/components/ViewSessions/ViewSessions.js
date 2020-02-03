@@ -14,13 +14,13 @@ class ViewSessions extends Component {
   };
 
   componentDidMount() {
-    console.log("mounting...");
+    // console.log("mounting...");
     if (this.props.signedInUser) this.fetchSessions();
   }
 
   render() {
-    console.log("rendering...");
-    console.log(data.default.sessions);
+    // console.log("rendering...");
+    // console.log(data.default.sessions);
     const { sessions } = this.state;
     const { signedInUser } = this.props;
     return (
@@ -65,11 +65,11 @@ class ViewSessions extends Component {
   }
 
   fetchSessions = () => {
-    console.log("fething sessions...");
+    // console.log("fething sessions...");
     const { signedInUser } = this.props;
 
     getSessions(signedInUser).then(sessions => {
-      console.log("fetched: ", sessions);
+      // console.log("fetched: ", sessions);
       this.setState({ sessions, isLoading: false });
     });
   };

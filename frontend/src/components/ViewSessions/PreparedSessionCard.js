@@ -1,12 +1,25 @@
-import React from "react";
-import { Link } from "@reach/router";
+import React, { useState } from "react";
+import { Link, navigate } from "@reach/router";
 import "./PreparedSessionCard.css";
 
 const PreparedSessionCard = props => {
   const {
     session: { session_name, questions }
   } = props;
-  console.log("sessioncard props", props);
+
+  const [sessionCode, setSessionCode] = useState("");
+
+  const handleChange = ({ target: { value } }) => {
+    setSessionCode(value);
+  };
+
+  const handleSessionStart = () => {
+    if (sessionCode) {
+      navigate(`/sessions/${sessionCode}`);
+    }
+  };
+
+  // console.log("sessioncard props", props);
   return (
     <div className="session-card">
       <div className="session-card-info">
@@ -24,6 +37,8 @@ const PreparedSessionCard = props => {
         <Link to={`${session_name}`}>
           <button className="start-session-btn">Start Session</button>
         </Link>
+        <input type="input" onChange={handleChange} />
+        <button onClick={handleSessionStart}>Set and go!</button>
         <button className="edit-session-btn">Edit Session</button>
       </div>
     </div>

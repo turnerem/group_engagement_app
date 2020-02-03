@@ -2,7 +2,7 @@ import React from "react";
 import "./PromptQuestionCard.css";
 
 const PromptQuestionCard = ({ question, answers }) => {
-  console.log(answers);
+  // console.log(answers);
   return (
     <div className="prompt-question-container">
       <div class="prompt-question-info">

@@ -12,6 +12,7 @@ class CreateSession extends Component {
 
   render() {
     console.log(this.state);
+    // console.log(this.state.session_name);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
