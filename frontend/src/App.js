@@ -5,7 +5,8 @@ import socketIOClient from "socket.io-client";
 import Header from "./components/Header/Header";
 import RegisterUser from "./components/RegisterUser/RegisterUser";
 import Home from "./components/Home/Home";
-import ViewSessions from './components/ViewSessions/ViewSessions'
+import ViewSessions from "./components/ViewSessions/ViewSessions";
+import SessionView from "./components/SessionView/SessionView";
 
 class App extends Component {
   state = {
@@ -26,18 +27,19 @@ class App extends Component {
     const { signedInUser } = this.state;
     console.log(signedInUser);
     return (
-     
       <div className="App">
         {/* <p className="component-identifier">app component</p> */}
         <Header signedInUser={signedInUser} signUserOut={this.signUserOut} />
         <Router>
-          <Home signUserIn={this.signUserIn} default/>
-          <RegisterUser path='/register'/>
-          <ViewSessions path='/sessions' signedInUser={signedInUser}/>
+          <Home signUserIn={this.signUserIn} default />
+          <RegisterUser path="/register" />
+          <ViewSessions path="/sessions" signedInUser={signedInUser} />
+          <SessionView
+            path="/sessions/:session_name"
+            signedInUser={signedInUser}
+          />
         </Router>
-       </div>
-       
-      
+      </div>
     );
   }
 
@@ -59,15 +61,17 @@ class App extends Component {
 
 export default App;
 
-
- {/* <Router>
+{
+  /* <Router>
           <SignIn
             path="/signIn"
             signUserIn={this.signUserIn}
             signUserOut={this.signUserOut}
           />
-          {/* <StudentSessionCode path="/join-session" endpoint={endpoint} /> */}
-          {/* <AdminSetRoom path="/admin-set-room" endpoint={endpoint} />
+          {/* <StudentSessionCode path="/join-session" endpoint={endpoint} /> */
+}
+{
+  /* <AdminSetRoom path="/admin-set-room" endpoint={endpoint} />
           <ViewSessions path="/my-sessions" signedInUser={signedInUser} />
           <SessionView
             path="/my-sessions/:session_name"
@@ -76,5 +80,5 @@ export default App;
           <RegisterUser path="/register" />
           <CreateSession path="/create-session" />
         </Router>
-        <button onClick={this.socketTest}>test socket</button> */}
-  
+        <button onClick={this.socketTest}>test socket</button> */
+}

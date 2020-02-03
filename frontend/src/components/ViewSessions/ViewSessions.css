@@ -1,11 +1,8 @@
 #view-prepared-container {
-  /* background-color: rgb(168, 226, 168); */
   color: white;
   padding: 3em 10em;
-  background-color: #2D2D2E;
+  background-color: #2d2d2e;
 }
-
-
 
 #view-prepared-header {
   display: flex;
@@ -23,7 +20,7 @@
 }
 
 #create-session-btn {
-  background: #FF417A;
+  background: #ff417a;
   color: white;
   font-size: 1.3em;
   border: 0;
@@ -38,7 +35,7 @@
   list-style: none;
 }
 
-#view-previous-container{
+#view-previous-container {
   color: white;
   padding: 3em 10em;
 }

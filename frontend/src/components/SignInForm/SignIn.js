@@ -13,12 +13,12 @@ class SignIn extends Component {
       <div id="signin-container">
         <form onSubmit={this.handleSubmit} id="signin-form">
           {/* <p className="component-identifier">Signin component</p> */}
-          
-            <h4>Log in</h4>
-            <span>Create/edit a session</span>
 
-            <label htmlFor="signin-input" id="signin-title">
-              Username: 
+          <h4>Log in</h4>
+          <span>Create/edit a session</span>
+
+          <label htmlFor="signin-input" id="signin-title">
+            Username:
           </label>
           <input
             value={userNameInput}
@@ -37,9 +37,9 @@ class SignIn extends Component {
         </Link>
         <Link to="/theidea">
           <button className="aux-button">
-            <i class="far fa-lightbulb fa-2x"></i><span>
-              The idea
-            </span></button>
+            <i class="far fa-lightbulb fa-2x"></i>
+            <span>The idea</span>
+          </button>
         </Link>
         <Link to="/code">
           <button className="aux-button">
@@ -61,7 +61,7 @@ class SignIn extends Component {
     const { userNameInput } = this.state;
     event.preventDefault();
     signUserIn(userNameInput);
-    navigate('/sessions')
+    navigate("/sessions");
   };
 }
 

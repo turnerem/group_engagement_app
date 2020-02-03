@@ -1,0 +1,22 @@
+.prompt-question-container {
+  background: #1f1f1f;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 8px;
+}
+
+.prompt-btn {
+  color: white;
+  background: #ff417a;
+  border: 0;
+  border-radius: 8px;
+  padding: 0 2em;
+  cursor: pointer;
+}
+
+.prompt-btn:hover {
+  background: #ff0e56;
+}

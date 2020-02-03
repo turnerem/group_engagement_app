@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./SessionView.css";
 import * as api from "../api";
+import PromptQuestionCard from "./PromptQuestionCard";
 
 const SessionView = props => {
   const { session_name, signedInUser } = props;
@@ -8,7 +9,7 @@ const SessionView = props => {
   const [sessionData, setSessionData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    api.getSingleSession(signedInUser, session_name).then(data => {
+    api.getSingleSession("JessJelly", "Painting").then(data => {
       setSessionData(data);
       setIsLoading(false);
     });
@@ -18,18 +19,21 @@ const SessionView = props => {
 
   return (
     <div id="session-view-container">
-      <p className="component-identifier">SessionView component</p>
-      <h3>{session_name}</h3>
+      {/* <p className="component-identifier">SessionView component</p> */}
+      <div id="session-view-header">
+        <h3>{session_name}</h3>
+        <p>Abort Session</p>
+      </div>
+      <p>Connected users: _______</p>
+      <div id="live-data-view">live-data-view</div>
       <ul>
         {sessionData.questions &&
           Object.keys(sessionData.questions).map(question => {
             return (
-              <li>
-                <p>{question}</p>
-                <ul>
-                  <li></li>
-                </ul>
-              </li>
+              <PromptQuestionCard
+                question={question}
+                answers={sessionData.questions[question]}
+              />
             );
           })}
       </ul>

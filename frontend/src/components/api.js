@@ -3,7 +3,8 @@ import axios from "axios";
 const baseURL = "http://192.168.100.131:5000/api";
 
 export const getSessions = signedInUser => {
-  return axios.get(`${baseURL}/${signedInUser}`).then(({ data }) => {
+  return axios.get(`${baseURL}/${signedInUser}`).then(({ data: { data } }) => {
+    console.log(data);
     return data.sessions;
   });
 };
