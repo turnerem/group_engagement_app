@@ -12,7 +12,7 @@ class Audience extends Component {
   };
 
   componentDidMount() {
-    console.log(`...mounting: `);
+    console.log(`...mounting:`);
     console.log(
       `%c room_code: ${this.props.room_code}`,
       "background:#000; color:#bada55;"
