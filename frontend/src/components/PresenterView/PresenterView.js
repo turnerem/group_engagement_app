@@ -33,12 +33,11 @@ class PresenterView extends Component {
         <div id="live-data-view">live-data-view</div>
         <ul>
           {sessionData.questions &&
-            Object.keys(sessionData.questions).map(question => {
+            sessionData.map(elem => {
               return (
                 <PromptQuestionCard
-                  question={question}
-                  answers={sessionData.questions[question]}
-                  key={question}
+                  {...elem}
+                  key={elem.question}
                 />
               );
             })}

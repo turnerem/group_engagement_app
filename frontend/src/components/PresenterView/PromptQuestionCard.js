@@ -2,8 +2,8 @@ import React from "react";
 import "./PromptQuestionCard.css";
 // import formatQuestionForAudience from '../../utils/utils'
 
-const PromptQuestionCard = ({ question, answers }) => {
-  // console.log(answers);
+const PromptQuestionCard = ({ question, answers, type }) => {
+  console.log(answers, 'answers is an object');
   // ['the question?', ['yes', 'no'], 'simple]
   // const toVoters = [question, answers, formatQuestionForAudience(answers)]
   return (
