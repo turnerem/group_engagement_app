@@ -1,6 +1,7 @@
 import "./Audience.css";
 import React, { Component } from "react";
 import AudienceQuestionCard from "./AudienceQuestionCard";
+import WaitingForQuestion from "./WaitingForQuestion";
 
 class Audience extends Component {
   state = {
@@ -24,14 +25,18 @@ class Audience extends Component {
 
   render() {
     const { room_code } = this.props;
-    const { currentQuestion } = this.state;
+    const { currentQuestion, isWaiting } = this.state;
     console.log(`...rendering: `);
     console.log(`%c room_code: ${room_code}`, "background:#000; color:red;");
     return (
       <div className="audience-view-container">
         <p>room_code: {room_code}</p>
         <p>You are in a room with _*_ others</p>
-        <AudienceQuestionCard currentQuestion={currentQuestion} />
+        {isWaiting ? (
+          <WaitingForQuestion />
+        ) : (
+          <AudienceQuestionCard currentQuestion={currentQuestion} />
+        )}
       </div>
     );
   }
