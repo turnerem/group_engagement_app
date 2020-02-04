@@ -4,18 +4,26 @@ import "./CreateSession.css";
 
 class CreateSession extends Component {
   state = {
-    session_name: "",
-    questions: {},
-    questionTitle: "",
-    object_type: { no: 0, yes: 0 },
-    string_type: "",
-    type: 0,
-    input_session_name: "",
-    input_questionTitle: ""
+    // goal: {
+    //   session_name: 'abcdefg',
+    //   question: [
+    //     {
+    //       "do birds exist?": {"yes": 0, "no":0},
+    //       "how big is the world": {"answers": []},
+    //       "which one isn't a powerranger": {"blue one": 0, "red one": 0, "gold one" : 0 , "donatello": 0}
+    //     }
+    //   ]
+    // }
+
+    sessionNameInput: "",
+    questionTitleInput: "",
+    savedQuestions: [],
+    type: "simple"
   };
 
   render() {
     console.log(this.state);
+    const { sessionNameInput, questionTitleInput, savedQuestions } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -23,24 +31,26 @@ class CreateSession extends Component {
             Session Name:
             <input
               onChange={e => {
-                this.handleChange(e.target.value, "session_name");
+                this.handleChange(e.target.value, "sessionNameInput");
               }}
+              value={sessionNameInput}
             />
           </label>
           <label>
-            _ask a question:
+            _question title:
             <input
               onChange={e => {
-                this.handleChange(e.target.value, "questionTitle");
+                this.handleChange(e.target.value, "questionTitleInput");
               }}
+              value={questionTitleInput}
               required
             />
           </label>
           <select onChange={this.selectType}>
-            <option id="object_type" value={this.state.object_type}>
+            <option id="object_type" value={"simple"}>
               yes-no
             </option>
-            <option id="string_type" value={this.state.string_type}>
+            <option id="string_type" value={"text"}>
               text
             </option>
           </select>
@@ -48,11 +58,12 @@ class CreateSession extends Component {
         </form>
         <h3>{this.state.session_name}</h3>
         <ul>
-          {Object.keys(this.state.questions).map((question, index) => {
+          {savedQuestions.map((question, index) => {
+            // console.log(question, "<<<<<<<<");
             return (
               <li key={index}>
-                <p>{question}</p>
-                <p>{JSON.stringify(this.state.questions[question])}</p>
+                <p>{Object.keys(question)[0]}</p>
+                {/* <p>{Object.keys(Object.values(question)[0])}</p> */}
               </li>
             );
           })}
@@ -64,40 +75,43 @@ class CreateSession extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { object_type, string_type, type } = this.state;
-    let qType;
-    if (type === 0) {
-      qType = object_type;
-    } else {
-      qType = string_type;
+    const { type, questionTitleInput } = this.state;
+    // let qType;
+    // if (type === 0) {
+    //   qType = object_type;
+    // } else {
+    //   qType = string_type;
+    // }
+    if (type === "text") {
+      this.setState(currentState => {
+        return {
+          savedQuestions: [
+            ...currentState.savedQuestions,
+            { [questionTitleInput]: { answers: [] } }
+          ],
+          questionTitleInput: ""
+        };
+      });
+      // formattedQuestion = {
+      //   [questionTitleInput]: { answers: [] }
+      // };
     }
-    this.setState(currentState => {
-      return {
-        questions: {
-          ...currentState.questions,
-          [this.state.questionTitle]: qType
-        }
-      };
-    });
-    // this.setState({ questionTitle: "" });
+    if (type === "simple") {
+      this.setState(currentState => {
+        return {
+          savedQuestions: [
+            ...currentState.savedQuestions,
+            { [questionTitleInput]: { yes: 0, no: 0 } }
+          ],
+          questionTitleInput: ""
+        };
+      });
+    }
   };
 
   handleChange = (value, key) => {
     this.setState({ [key]: value });
   };
-
-  // handleChange = (value, key) => {
-  //   const { input_session_name, input_questionTitle, input_type  } = this.state;
-  //   if (key === input_session_name) {
-  //   this.setState({ session_name: value, input_session_name: "" });
-  //   }
-  //   if (key === input_questionTitle) {
-  //     this.setState({ questionTitle: value, input_questionTitle: ""})
-  //   }
-  //   if (key === input_type) {
-  //     this.setState({type: value, input_type: })
-  //   }
-  // };
 
   handleCreateSession = () => {
     const { session_name, questions } = this.state;
@@ -112,12 +126,9 @@ class CreateSession extends Component {
   };
 
   selectType = event => {
+    // console.log(event.target.value);
     const { value } = event.target;
-    if (value === "") {
-      this.setState({ type: 1 });
-    } else if (value !== "") {
-      this.setState({ type: 0 });
-    }
+    this.setState({ type: value });
   };
 }
 
