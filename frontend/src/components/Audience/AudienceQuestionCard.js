@@ -6,30 +6,22 @@ const AudienceQuestionCard = ({ currentQuestion }) => {
   const [questionTitle, answers, type] = formatQuestionForAudience(
     currentQuestion
   );
-  console.log(questionTitle, answers, type);
 
   const CardTemplate = buttons => (
     <div className="audience-card-container">
       <p>{questionTitle}</p>
-      {buttons}
     </div>
   );
 
   if (type === "simple") {
-    return CardTemplate(
-      <>
-        <button>Yes</button>
-        <button>No</button>
-      </>
-    );
+    return CardTemplate;
   }
 
   if (type === "text") {
-    return CardTemplate(
-      <>
-        <input type="text" />
-        <button>submit</button>
-      </>
+    return (
+      <div className="audience-card-container">
+        <p>{questionTitle}</p>
+      </div>
     );
   }
 };

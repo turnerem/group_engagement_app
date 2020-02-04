@@ -37,13 +37,13 @@ class SignIn extends Component {
         </Link>
         <Link to="/theidea">
           <button className="aux-button">
-            <i class="far fa-lightbulb fa-2x"></i>
+            <i className="far fa-lightbulb fa-2x"></i>
             <span>The idea</span>
           </button>
         </Link>
         <Link to="/code">
           <button className="aux-button">
-            <i class="fab fa-github fa-2x"></i>
+            <i className="fab fa-github fa-2x"></i>
             <span>The code</span>
           </button>
         </Link>

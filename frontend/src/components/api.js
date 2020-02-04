@@ -1,13 +1,24 @@
 import axios from "axios";
 
+<<<<<<< HEAD
 const baseURL = "http://192.168.100.99:5000/api";
 // Paula's Macbook Air is 192.168.100.99
 // const baseURL = "http://192.168.100.140:5000/api";
+=======
+
+// const baseURL = "http://192.168.100.117:5000/api";
+// const baseURL = "http://192.168.100.99:5000/api";
+// // Paula's Macbook Air is 192.168.100.99
+const baseURL = "http://192.168.100.140:5000/api";
+
+>>>>>>> 15f29927a02eca3e8e2f35765d283b8b1b42256b
 // http://192.168.100.140:5000/api   = dougs laptop
+//  192.168.100.117 = emily
 
 export const getSessions = signedInUser => {
-  return axios.get(`${baseURL}/${signedInUser}`).then(({ data: { data } }) => {
-    // console.log(data);
+  console.log('in get sessions')
+  return axios.get(`${baseURL}/${signedInUser}`).then(({data}) => {
+    // console.log('\n\nthe response', response);
     return data.sessions;
   });
 };
