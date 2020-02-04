@@ -27,7 +27,7 @@ class App extends Component {
   render() {
     // const { endpoint } = this.state;
     const { signedInUser } = this.state;
-    console.log('user signed in?', signedInUser);
+    console.log("user signed in?", signedInUser);
     return (
       <div className="App">
         {/* <p className="component-identifier">app component</p> */}
@@ -50,7 +50,6 @@ class App extends Component {
   socketTest = event => {
     // const { endpoint } = this.state;
     // const socket = socketIOClient(endpoint);
-
     // socket.emit("btn click", "connected to react");
   };
 
