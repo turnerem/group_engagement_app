@@ -7,20 +7,22 @@ class PresenterView extends Component {
   state = {
     sessionData: [],
     isLoading: true
-  }
-  
+  };
+
   // const { sessionCode, signedInUser } = props;
-  
+
   componentDidMount() {
-    this.fetchSession()
+    this.fetchSession();
   }
   // console.log(props, "<<<<<<<<");
   // console.log(">>>>", sessionCode);
 
   render() {
     const { isLoading, sessionData } = this.state;
-    const { sessionCode } = this.props
-    if (isLoading) {return <p>LoadingHIYA....</p>;}
+    const { sessionCode } = this.props;
+    if (isLoading) {
+      return <p>LoadingHIYA....</p>;
+    }
 
     return (
       <div id="session-view-container">
@@ -49,16 +51,13 @@ class PresenterView extends Component {
 
   fetchSession = () => {
     // console.log("fething sessions...");
-    const { session_name } = this.props
+    const { session_name } = this.props;
 
-    console.log('SESSION ', session_name)
-    api.getSingleSession("JessJelly", session_name)
-      .then(data => {
-        this.setState({sessionData: data, isLoading: false})
-    })
+    console.log("SESSION ", session_name);
+    api.getSingleSession("JessJelly", session_name).then(data => {
+      this.setState({ sessionData: data, isLoading: false });
+    });
   };
-
-  
-};
+}
 
 export default PresenterView;
