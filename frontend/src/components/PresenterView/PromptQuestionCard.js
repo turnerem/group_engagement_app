@@ -20,22 +20,22 @@ const PromptQuestionCard = ({ question, answers, type }) => {
         <button className="prompt-btn">Prompt</button>
       </li>
 
-  sendQuestion = event => {};
+  // sendQuestion = event => {};
 
-  return (
-    <li className="prompt-question-container">
-      <div className="prompt-question-info">
-        <p>{question}</p>
-        <ul>
-          {Object.keys(answers).map(answer => {
-            return <li key={answer}>{answer}</li>;
-          })}
-        </ul>
-      </div>
-      <button className="prompt-btn" onClick={}>
-        Prompt
-      </button>
-    </li>
+  // return (
+  //   <li className="prompt-question-container">
+  //     <div className="prompt-question-info">
+  //       <p>{question}</p>
+  //       <ul>
+  //         {Object.keys(answers).map(answer => {
+  //           return <li key={answer}>{answer}</li>;
+  //         })}
+  //       </ul>
+  //     </div>
+  //     <button className="prompt-btn" onClick={}>
+  //       Prompt
+  //     </button>
+  //   </li>
   );
 };
 

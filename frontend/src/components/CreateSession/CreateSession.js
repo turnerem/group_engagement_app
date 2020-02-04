@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { postNewSession } from "../api";
 import "./CreateSession.css";
+import SavedQuestion from "./SavedQuestion";
+import {Link} from '@reach/router'
 
 class CreateSession extends Component {
   state = {
@@ -27,62 +29,63 @@ class CreateSession extends Component {
     console.log(this.state)
     const { sessionNameInput, questionTitleInput, savedQuestions, type, multiQuestionInput } = this.state;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Session Name:
+      <div id='create-session-container'>
+        <Link to='/sessions'>Back to dashboard</Link>
+        <h3>Create a new session</h3>
+          <label htmlFor='session-name-input'>
+            Session Name:</label>
             <input
               onChange={e => {
                 this.handleChange(e.target.value, "sessionNameInput");
               }}
               value={sessionNameInput}
+              id='session-name-input'
             />
-          </label>
-          <label>
-            _question title:
+          
+          <h4>Questions</h4>
+        <form onSubmit={this.handleSubmit} className='create-session-form'>
+            <p>Question {savedQuestions.length + 1}</p>
+          <div class="saved-question-header">
+            <label htmlFor='question-title-input'>
+              _question title:</label>
+            <select onChange={this.selectType} value={this.state.type}>
+              <option id="object_type" value={"simple"}>
+                yes-no
+              </option>
+              <option id="string_type" value={"text"}>
+                text
+              </option>
+              <option id="multiple_choice" value={"multi"}>
+                multiple choice
+              </option>
+            </select>
+          </div>
             <input
               onChange={e => {
                 this.handleChange(e.target.value, "questionTitleInput");
               }}
               value={questionTitleInput}
+              id='question-title-input'
               required
             />
-          </label>
-          <select onChange={this.selectType} value={this.state.type}>
-            <option id="object_type" value={"simple"}>
-              yes-no
-            </option>
-            <option id="multiple_choice" value={"multi"}>
-              multiple choice
-            </option>
-            <option id="string_type" value={"text"}>
-              text
-            </option>
-          </select>
-          {/* {console.log('the type', type)} */}
+          
           {(type === 'multi') &&
-          //  const arr = new Array(6)
           multiQuestionInput.map((elem, i) => {
-             {/* return <input type="text"></input> */}
-            return <input key={i} type='text' onChange={(e) => {this.handleMulti(e, i)}}/>
+            return <input key={i} type='text' onChange={(e) => {this.handleMulti(e, i)}} className='multi-choice-field' placeholder='optional'/>
           })
           }
-          <button>add a question</button>
+          <button className='add-question-btn'>add a question</button>
         </form>
         <h3>{this.state.session_name}</h3>
         <ul>
           {savedQuestions.map((question, index) => {
             // console.log(question, "<<<<<<<<");
             return (
-              <li key={index}>
-                <p>{Object.keys(question)[0]}</p>
-                {/* Insert a question card component here */}
-                {/* <p>{Object.keys(Object.values(question)[0])}</p> */}
-              </li>
+           <SavedQuestion question={question} index={index} key={index}/>
             );
           })}
         </ul>
-        <button onClick={this.handleCreateSession}>create sesh</button>
+        <button onClick={this.handleCreateSession} className='create-session-btn'>create sesh</button>
       </div>
     );
   }
@@ -90,12 +93,7 @@ class CreateSession extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { type, questionTitleInput } = this.state;
-    // let qType;
-    // if (type === 0) {
-    //   qType = object_type;
-    // } else {
-    //   qType = string_type;
-    // }
+  
     if (type === "text") {
       this.setState(currentState => {
         return {
@@ -129,7 +127,7 @@ class CreateSession extends Component {
             { [questionTitleInput]: this.state.multiQuestionInput, type: type}
           ],
           questionTitleInput: "",
-          // multiQuestionInput: [...Array(6)]
+          multiQuestionInput: [...Array(6)],
           type: "simple"
         }
       }
