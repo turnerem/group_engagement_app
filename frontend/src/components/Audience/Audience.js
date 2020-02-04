@@ -6,9 +6,12 @@ class Audience extends Component {
   state = {
     currentQuestion: {
       "Shall we use dogs and paper instead?": {
-        answers: []
+        yes: 0,
+        no: 0
       }
-    }
+    },
+
+    isWaiting: true
   };
 
   componentDidMount() {
@@ -32,6 +35,21 @@ class Audience extends Component {
       </div>
     );
   }
+
+  setQuestion = () => {
+    // this is to be set on socket event 'question prompted' (or whatever)
+    this.setState({
+      currentQuestion: {
+        "Alex to make this filled on socket event": { answer1: 0, answer2: 0 }
+      },
+      isWaiting: false
+    });
+  };
+
+  removeQuestion = () => {
+    // This is to be set on socket event 'stop prompt' (or whatever)
+    this.setState({ currentQuestion: false, isWaiting: true });
+  };
 }
 
 export default Audience;
