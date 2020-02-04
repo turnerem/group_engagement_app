@@ -32,6 +32,16 @@ const AudienceQuestionCard = ({ currentQuestion }) => {
       </>
     );
   }
+
+  if (type === "multi") {
+    return CardTemplate(
+      <>
+        {answers.map(answer => {
+          return <button>{answer}</button>;
+        })}
+      </>
+    );
+  }
 };
 
 export default AudienceQuestionCard;

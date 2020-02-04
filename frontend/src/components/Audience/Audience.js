@@ -6,8 +6,7 @@ class Audience extends Component {
   state = {
     currentQuestion: {
       "Shall we use dogs and paper instead?": {
-        no: 0,
-        yes: 0
+        answers: []
       }
     }
   };
