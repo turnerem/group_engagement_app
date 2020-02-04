@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 import "./App.css";
-import socketIOClient from "socket.io-client";
+// import socketIOClient from "socket.io-client";
 import Header from "./components/Header/Header";
 import RegisterUser from "./components/RegisterUser/RegisterUser";
 import Home from "./components/Home/Home";
 import ViewSessions from "./components/ViewSessions/ViewSessions";
 import CreateSession from "./components/CreateSession/CreateSession";
-import SessionView from "./components/SessionView/SessionView";
+import PresenterView from "./components/PresenterView/PresenterView";
 import Audience from "./components/Audience/Audience";
 
 class App extends Component {
@@ -17,17 +17,17 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.on("test event", data => {
-      console.log(data, "data logged");
-    });
+    // const { endpoint } = this.state;
+    // const socket = socketIOClient(endpoint);
+    // socket.on("test event", data => {
+    //   console.log(data, "data logged");
+    // });
   }
 
   render() {
-    const { endpoint } = this.state;
+    // const { endpoint } = this.state;
     const { signedInUser } = this.state;
-    console.log(signedInUser);
+    console.log('user signed in?', signedInUser);
     return (
       <div className="App">
         {/* <p className="component-identifier">app component</p> */}
@@ -37,7 +37,7 @@ class App extends Component {
           <RegisterUser path="/register" />
           <ViewSessions path="/sessions" signedInUser={signedInUser} />
           <CreateSession path="/create-session" signedInUser={signedInUser} />
-          <SessionView
+          <PresenterView
             path="/sessions/:session_name"
             signedInUser={signedInUser}
           />
@@ -48,10 +48,10 @@ class App extends Component {
   }
 
   socketTest = event => {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
+    // const { endpoint } = this.state;
+    // const socket = socketIOClient(endpoint);
 
-    socket.emit("btn click", "connected to react");
+    // socket.emit("btn click", "connected to react");
   };
 
   signUserIn = user => {
@@ -77,7 +77,7 @@ export default App;
 {
   /* <AdminSetRoom path="/admin-set-room" endpoint={endpoint} />
           <ViewSessions path="/my-sessions" signedInUser={signedInUser} />
-          <SessionView
+          <PresenterView
             path="/my-sessions/:session_name"
             signedInUser={signedInUser}
           />

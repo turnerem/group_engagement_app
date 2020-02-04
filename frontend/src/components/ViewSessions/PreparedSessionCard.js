@@ -24,7 +24,7 @@ const PreparedSessionCard = props => {
     <div className="session-card">
       <div className="session-card-info">
         <li>
-          <Link to={`${session_name}`}>
+          <Link to={session_name}>
             <p className="session-name">{session_name}</p>
           </Link>
           <p className="session-question-count">
@@ -34,7 +34,7 @@ const PreparedSessionCard = props => {
       </div>
 
       <div className="session-card-btns">
-        <Link to={`${session_name}`}>
+        <Link to={session_name}>
           <button className="start-session-btn">Start Session</button>
         </Link>
         <input type="input" onChange={handleChange} />

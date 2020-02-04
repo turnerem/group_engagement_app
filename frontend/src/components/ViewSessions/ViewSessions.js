@@ -3,19 +3,21 @@ import { getSessions } from "../api";
 import PreparedSessionCard from "./PreparedSessionCard";
 import { Link } from "@reach/router";
 import "./ViewSessions.css";
-import * as data from "../../exampleData.json";
+// import * as data from "../../exampleData.json";
 import PreviousSessionCard from "./PreviousSessionCard";
 
 class ViewSessions extends Component {
   state = {
-    sessions: [...data.default.sessions],
+    sessions: [],
     isLoading: true,
     err: null
   };
 
   componentDidMount() {
-    // console.log("mounting...");
-    if (this.props.signedInUser) this.fetchSessions();
+    console.log("mounting...", this.props.signedInUser);
+    if (this.props.signedInUser) {
+      this.fetchSessions()
+    }
   }
 
   render() {

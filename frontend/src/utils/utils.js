@@ -6,20 +6,32 @@ export const formatQuestionForAudience = question => {
   //     "no": 0,
   //     "yes": 0
   //  }
-  console.log("checking question");
-  console.log(Object.values(question));
-  if (
-    Object.keys(Object.values(question)[0]).includes("yes") &&
-    Object.keys(Object.values(question)[0]).includes("no")
-  ) {
-    // this is a binary question - yes/no answers!
-    console.log("is simple!");
+
+  if (Object.values(question).length === 2) {
+    // this is a binary question - two answers!
     return [Object.keys(question)[0], Object.values(question), "simple"];
-  } else if (Object.keys(Object.values(question)[0]).length === 1) {
+  }
+
+  if (Object.values(question).length === 1) {
     // this is a text question - only one answer!
     return [Object.keys(question)[0], "", "text"];
-  } else if (Object.keys(Object.values(question)[0]).length > 1) {
+  }
+
+  if (Object.values(question).length > 2) {
     // this is a multiple choice question - more than two answers!
     return [Object.keys(question)[0], Object.values(question), "muti"];
   }
 };
+
+
+// if (answers.includes("yes") && answers.includes("no") && answers.length === 2) {
+//   // this is a binary question - yes/no answers!
+//   return "simple";
+// } else if (answers.length >= 2) {
+// // this is a multiple choice question - more than two answers!
+// return "multi";
+// } else if (answers.length === 0) {
+// // this is a text question - only one answer!
+// return "text";
+// } 
+// };
