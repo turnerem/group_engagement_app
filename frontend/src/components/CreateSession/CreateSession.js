@@ -17,13 +17,14 @@ class CreateSession extends Component {
 
     sessionNameInput: "",
     questionTitleInput: "",
-    savedQuestions: [],
-    type: "simple"
+    savedQuestions: [{question: 'ereoif', answers:["yes', 'no"], type: 'multi'} ],
+    type: "simple",
+    multiQuestionInput: [...Array(6)]
   };
 
   render() {
     console.log(this.state);
-    const { sessionNameInput, questionTitleInput, savedQuestions } = this.state;
+    const { sessionNameInput, questionTitleInput, savedQuestions, type, multiQuestionInput } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -50,10 +51,21 @@ class CreateSession extends Component {
             <option id="object_type" value={"simple"}>
               yes-no
             </option>
+            <option id="multiple_choice" value={"multi"}>
+              multiple choice
+            </option>
             <option id="string_type" value={"text"}>
               text
             </option>
           </select>
+          {console.log('the type', type)}
+          {(type === 'multi') &&
+          //  const arr = new Array(6)
+          multiQuestionInput.map((elem, i) => {
+             return <p>{i}</p>
+            // return <input type='text' onChange={(e, i) => {this.handleMulti(e, i)}}/>
+          })
+          }
           <button>add a question</button>
         </form>
         <h3>{this.state.session_name}</h3>
@@ -113,6 +125,16 @@ class CreateSession extends Component {
     this.setState({ [key]: value });
   };
 
+  handleMulti = (event, i) => {
+    const { value } = event.target;
+    this.setState((currentState) => {
+      const { multiQuestionInput } = currentState
+      const updatedMulti = [...multiQuestionInput]
+      updatedMulti[i] = value
+      return { multiQuestionInput: updatedMulti}
+    })
+  }
+
   handleCreateSession = () => {
     const { session_name, questions } = this.state;
     const { signedInUser } = this.props;
@@ -126,7 +148,7 @@ class CreateSession extends Component {
   };
 
   selectType = event => {
-    // console.log(event.target.value);
+    console.log('setting type');
     const { value } = event.target;
     this.setState({ type: value });
   };
