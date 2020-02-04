@@ -17,13 +17,14 @@ class CreateSession extends Component {
 
     sessionNameInput: "",
     questionTitleInput: "",
-    savedQuestions: [{question: 'ereoif', answers:["yes', 'no"], type: 'multi'} ],
+    savedQuestions: [],
+    // savedQuestions: [{question: 'ereoif', answers:["yes', 'no"], type: 'multi'} ],
     type: "simple",
     multiQuestionInput: [...Array(6)]
   };
 
   render() {
-    console.log(this.state);
+    console.log(this.state)
     const { sessionNameInput, questionTitleInput, savedQuestions, type, multiQuestionInput } = this.state;
     return (
       <div>
@@ -47,7 +48,7 @@ class CreateSession extends Component {
               required
             />
           </label>
-          <select onChange={this.selectType}>
+          <select onChange={this.selectType} value={this.state.type}>
             <option id="object_type" value={"simple"}>
               yes-no
             </option>
@@ -58,12 +59,12 @@ class CreateSession extends Component {
               text
             </option>
           </select>
-          {console.log('the type', type)}
+          {/* {console.log('the type', type)} */}
           {(type === 'multi') &&
           //  const arr = new Array(6)
           multiQuestionInput.map((elem, i) => {
-             return <p>{i}</p>
-            // return <input type='text' onChange={(e, i) => {this.handleMulti(e, i)}}/>
+             {/* return <input type="text"></input> */}
+            return <input key={i} type='text' onChange={(e) => {this.handleMulti(e, i)}}/>
           })
           }
           <button>add a question</button>
@@ -75,6 +76,7 @@ class CreateSession extends Component {
             return (
               <li key={index}>
                 <p>{Object.keys(question)[0]}</p>
+                {/* Insert a question card component here */}
                 {/* <p>{Object.keys(Object.values(question)[0])}</p> */}
               </li>
             );
@@ -99,7 +101,7 @@ class CreateSession extends Component {
         return {
           savedQuestions: [
             ...currentState.savedQuestions,
-            { [questionTitleInput]: { answers: [] } }
+            { [questionTitleInput]: { answers: [] }, type: type }
           ],
           questionTitleInput: ""
         };
@@ -113,12 +115,25 @@ class CreateSession extends Component {
         return {
           savedQuestions: [
             ...currentState.savedQuestions,
-            { [questionTitleInput]: { yes: 0, no: 0 } }
+            { [questionTitleInput]: { yes: 0, no: 0 }, type: type }
           ],
           questionTitleInput: ""
         };
       });
     }
+    if (type === "multi") {
+      this.setState(currentState => {
+        return {
+          savedQuestions: [
+            ...currentState.savedQuestions,
+            { [questionTitleInput]: this.state.multiQuestionInput, type: type}
+          ],
+          questionTitleInput: "",
+          // multiQuestionInput: [...Array(6)]
+          type: "simple"
+        }
+      }
+      )}
   };
 
   handleChange = (value, key) => {
@@ -127,10 +142,11 @@ class CreateSession extends Component {
 
   handleMulti = (event, i) => {
     const { value } = event.target;
+    // console.log(value);
     this.setState((currentState) => {
       const { multiQuestionInput } = currentState
       const updatedMulti = [...multiQuestionInput]
-      updatedMulti[i] = value
+      updatedMulti[i] = value;
       return { multiQuestionInput: updatedMulti}
     })
   }
