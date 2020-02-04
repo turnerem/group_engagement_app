@@ -7,17 +7,20 @@ class CreateSession extends Component {
     session_name: "",
     questions: {},
     questionTitle: "",
-    type: { no: 0, yes: 0 }
+    object_type: { no: 0, yes: 0 },
+    string_type: "",
+    type: 0,
+    input_session_name: "",
+    input_questionTitle: ""
   };
 
   render() {
     console.log(this.state);
-    // console.log(this.state.session_name);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Session Name
+            Session Name:
             <input
               onChange={e => {
                 this.handleChange(e.target.value, "session_name");
@@ -25,7 +28,7 @@ class CreateSession extends Component {
             />
           </label>
           <label>
-            Question Title
+            _ask a question:
             <input
               onChange={e => {
                 this.handleChange(e.target.value, "questionTitle");
@@ -34,8 +37,12 @@ class CreateSession extends Component {
             />
           </label>
           <select onChange={this.selectType}>
-            <option value={{ no: 0, yes: 0 }}>yes-no</option>
-            <option value="">text</option>
+            <option id="object_type" value={this.state.object_type}>
+              yes-no
+            </option>
+            <option id="string_type" value={this.state.string_type}>
+              text
+            </option>
           </select>
           <button>add a question</button>
         </form>
@@ -57,23 +64,44 @@ class CreateSession extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { type } = this.state;
+    const { object_type, string_type, type } = this.state;
+    let qType;
+    if (type === 0) {
+      qType = object_type;
+    } else {
+      qType = string_type;
+    }
     this.setState(currentState => {
       return {
         questions: {
           ...currentState.questions,
-          [this.state.questionTitle]: type
+          [this.state.questionTitle]: qType
         }
       };
     });
+    // this.setState({ questionTitle: "" });
   };
 
   handleChange = (value, key) => {
     this.setState({ [key]: value });
   };
 
+  // handleChange = (value, key) => {
+  //   const { input_session_name, input_questionTitle, input_type  } = this.state;
+  //   if (key === input_session_name) {
+  //   this.setState({ session_name: value, input_session_name: "" });
+  //   }
+  //   if (key === input_questionTitle) {
+  //     this.setState({ questionTitle: value, input_questionTitle: ""})
+  //   }
+  //   if (key === input_type) {
+  //     this.setState({type: value, input_type: })
+  //   }
+  // };
+
   handleCreateSession = () => {
     const { session_name, questions } = this.state;
+    const { signedInUser } = this.props;
     postNewSession("JessJelly", session_name, questions).then(
       this.setState({
         session_name: "",
@@ -85,7 +113,11 @@ class CreateSession extends Component {
 
   selectType = event => {
     const { value } = event.target;
-    this.setState({ type: value });
+    if (value === "") {
+      this.setState({ type: 1 });
+    } else if (value !== "") {
+      this.setState({ type: 0 });
+    }
   };
 }
 
