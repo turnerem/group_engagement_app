@@ -33,7 +33,9 @@ class PresenterView extends Component {
         <div id="live-data-view">live-data-view</div>
         <ul>
           {sessionData.questions &&
-            sessionData.map(elem => {
+            sessionData.questions.map(elem => {
+              elem.answers = Object.keys(elem.answers)
+              // console.log()
               return (
                 <PromptQuestionCard
                   {...elem}
@@ -53,6 +55,7 @@ class PresenterView extends Component {
     console.log('SESSION ', session_name)
     api.getSingleSession("JessJelly", session_name)
       .then(data => {
+        console.log(data, 'an array?')
         this.setState({sessionData: data, isLoading: false})
     })
   };
