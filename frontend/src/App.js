@@ -27,7 +27,7 @@ class App extends Component {
   render() {
     const { endpoint } = this.state;
     const { signedInUser } = this.state;
-    // console.log(signedInUser);
+    console.log(signedInUser);
     return (
       <div className="App">
         {/* <p className="component-identifier">app component</p> */}
@@ -38,7 +38,7 @@ class App extends Component {
           <ViewSessions path="/sessions" signedInUser={signedInUser} />
           <CreateSession path="/create-session" signedInUser={signedInUser} />
           <SessionView
-            path="/sessions/:sessionCode"
+            path="/sessions/:session_name"
             signedInUser={signedInUser}
           />
           <Audience path="/joined-session/:room_code" />
