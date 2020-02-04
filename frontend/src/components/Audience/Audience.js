@@ -1,8 +1,16 @@
 import "./Audience.css";
 import React, { Component } from "react";
+import AudienceQuestionCard from "./AudienceQuestionCard";
 
 class Audience extends Component {
-  state = {};
+  state = {
+    currentQuestion: {
+      "Shall we use dogs and paper instead?": {
+        no: 0,
+        yes: 0
+      }
+    }
+  };
 
   componentDidMount() {
     console.log(`...mounting: `);
@@ -14,12 +22,14 @@ class Audience extends Component {
 
   render() {
     const { room_code } = this.props;
+    const { currentQuestion } = this.state;
     console.log(`...rendering: `);
     console.log(`%c room_code: ${room_code}`, "background:#000; color:red;");
     return (
       <div className="audience-view-container">
         <p>room_code: {room_code}</p>
-        <p>You are in a room with ___ others</p>
+        <p>You are in a room with _*_ others</p>
+        <AudienceQuestionCard currentQuestion={currentQuestion} />
       </div>
     );
   }
