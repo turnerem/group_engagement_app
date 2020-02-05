@@ -6,8 +6,7 @@ import socketIOClient from "socket.io-client";
 const PromptQuestionCard = ({ question, type, endpoint, index }) => {
   const socket = socketIOClient(endpoint);
   const sendQuestion = event => {
-    console.log(question, "question");
-    console.log(type, "type");
+    console.log("prompying question");
     socket.emit("presenter prompt", { question, index });
   };
 
