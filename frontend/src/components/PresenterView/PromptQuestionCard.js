@@ -3,15 +3,23 @@ import "./PromptQuestionCard.css";
 import socketIOClient from "socket.io-client";
 // import formatQuestionForAudience from '../../utils/utils'
 
-const PromptQuestionCard = ({ question, answers, type }) => {
+const PromptQuestionCard = ({
+  question,
+  answers,
+  type,
+  endpoint,
+  sessionData
+}) => {
   const sendQuestion = event => {
-    const { endpoint, sessionData } = props;
-    console.log(endpoint);
+    console.log(question, "question");
+    console.log(type, "type");
+    console.log(sessionData, "sessionData");
+    console.log(answers, "answers");
+    console.log(question, "question");
     const socket = socketIOClient(endpoint);
-    socket.emit("presenter", sessionData);
+    socket.emit("prompt sent", sessionData);
   };
 
-  const { question, answers } = props;
   console.log(question);
   return (
     <li className="prompt-question-container">
