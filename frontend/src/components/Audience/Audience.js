@@ -38,8 +38,9 @@ class Audience extends Component {
     console.log(`%c room_code: ${room_code}`, "background:#000; color:red;");
     return (
       <div className="audience-view-container">
-        <p>room_code: {room_code}</p>
-        <p>You are in a room with _*_ others</p>
+        {/* <p>room_code: {room_code}</p> 
+        <p>You are in a room with _*_ others</p> */}
+        {/* TODO: make these ^^^ functional?? */}
         {isWaiting ? (
           <WaitingForQuestion />
         ) : (

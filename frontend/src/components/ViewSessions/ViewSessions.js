@@ -72,7 +72,12 @@ class ViewSessions extends Component {
 
     getSessions(signedInUser).then(sessions => {
       console.log("fetched: ", sessions);
-      this.setState({ sessions, isLoading: false });
+      // doug:
+      // this is to avoid crashed on no sessions found 
+      // TODO - add 'no sessions yet, why not create one!' message
+      if(sessions){
+        this.setState({ sessions, isLoading: false })
+      }
     });
   };
 }

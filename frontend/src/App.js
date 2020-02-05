@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 import "./App.css";
-import socketIOClient from "socket.io-client";
 import Header from "./components/Header/Header";
 import RegisterUser from "./components/RegisterUser/RegisterUser";
 import Home from "./components/Home/Home";
@@ -13,8 +12,10 @@ import Audience from "./components/Audience/Audience";
 class App extends Component {
   state = {
     signedInUser: "JessJelly",
-    endpoint: "http://192.168.100.140:5000/"
+    endpoint: "http://192.168.0.17:5000/"
   };
+
+
 
   render() {
     // const { endpoint } = this.state;

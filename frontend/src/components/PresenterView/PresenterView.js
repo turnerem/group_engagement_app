@@ -15,15 +15,23 @@ class PresenterView extends Component {
     this.fetchSession();
 
     const socket = socketIOClient(endpoint);
-    socket.on("answer to presenter", ({ answer, index }) => {
+    socket.on("answer to presenter", ({ answer, index, vote }) => {
       console.log("answer recieved from flask!");
       this.setState(currentState => {
         const newState = { ...currentState };
         console.log(newState);
-        newState.sessionData.questions[index].answers[answer] += 1;
+        newState.sessionData.questions[index].answers[answer] += vote;
         return newState;
       });
     });
+    socket.on('text to presenter', ({textInput, index}) => {
+      console.log('text recieved from flask!')
+      this.setState(currentState => {
+        const newState = {...currentState};
+        newState.sessionData.questions[index].answers.push(textInput)
+        return newState
+      })
+    })
   }
 
   render() {

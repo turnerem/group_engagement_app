@@ -3,7 +3,7 @@ import axios from "axios";
 // const baseURL = "http://192.168.100.117:5000/api";
 // const baseURL = "http://192.168.100.99:5000/api";
 // // Paula's Macbook Air is 192.168.100.99
-const baseURL = "http://192.168.100.140:5000/api";
+const baseURL = "http://192.168.0.17:5000/api";
 
 // http://192.168.100.140:5000/api   = dougs laptop
 //  192.168.100.117 = emily
@@ -30,13 +30,13 @@ export const getSingleSession = (signedInUser, sessionName) => {
     .then(({ data }) => {
       // console.log(data.sessions[0]);
       return data.sessions[0];
-    });
+    }); // TODO: add catch block here
 };
 
 export const postNewUser = username => {
   return axios.post(`${baseURL}`, { user_name: username }).then(({ data }) => {
     return data;
-  });
+  }); // TODO: add catch block here
 };
 
 export const postNewSession = (signedInUser, session_name, questions) => {
@@ -44,5 +44,5 @@ export const postNewSession = (signedInUser, session_name, questions) => {
     .post(`${baseURL}/${signedInUser}`, { session_name, questions })
     .then(({ data }) => {
       return data;
-    });
+    }); // TODO: add catch block here
 };

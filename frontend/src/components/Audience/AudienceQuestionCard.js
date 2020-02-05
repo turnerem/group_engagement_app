@@ -10,50 +10,68 @@ const AudienceQuestionCard = ({
   endpoint
 }) => {
   const [answerGiven, setAnswerGiven] = useState("");
+  const [textInput, setTextInput] = useState('')
   const socket = socketIOClient(endpoint);
 
   const CardTemplate = buttons => (
     <div className="audience-card-container">
-      <p>{question} look!</p>
+      <p>{question}</p>
       {buttons}
     </div>
   );
 
   const handleSubmit = answer => {
-    socket.emit("answer given", { answer, index });
     // checks if answer has already been given, does the things
     console.log("handleSubmit >> ", answer);
     if (answerGiven === "") {
+      console.log('first vote!')
       //check if first time voting
-      setAnswerGiven(answer);
+      sendAnswer(answer, 1)
+    setAnswerGiven(answer);
+      
+    } else if (answerGiven === answer) {
+      // check if you've pressed the same button twice (undo)
+      sendAnswer(answer, -1)
+      setAnswerGiven('');
+
     } else {
+      // opposite button pressed
+      sendAnswer(answerGiven, -1)
+      sendAnswer(answer, 1)
+      setAnswerGiven(answer)
+
     }
   };
 
-  const sendAnswer = () => {
+  const handleTextChange = ({target: {value}}) => {
+    setTextInput(value)
+  }
+  const handleTextSubmit = event => {
+    event.preventDefault()
+    console.log('sending...', textInput)
+    socket.emit('text given', {textInput, index})
+  }
+
+  const sendAnswer = (answer, vote) => {
     // send +1 of answer *and* store given answer in state
     // emit('given answer')
     // listen 'given' => +1 whatever the string is
+    socket.emit("answer given", { answer, index, vote });
   };
 
-  const undoAnswer = () => {
-    //send -1 of prev given answer (which is held in state)
-    // emit('undo answer')
-    // listen undo => -1 whatever the string is
-  };
 
   if (type === "simple") {
     console.log("is simeple!");
     return CardTemplate(
       <>
         <button
-          className="audience-yes-btn"
+          className={`audience-yes-btn ${answerGiven==='yes' ? ' yes-selected': null}`}
           onClick={() => handleSubmit("yes")}
         >
           yes
         </button>
 
-        <button className="audience-no-btn" onClick={() => handleSubmit("no")}>
+        <button className={`audience-no-btn ${answerGiven==='no' ? ' no-selected': null}`} onClick={() => handleSubmit("no")}>
           no
         </button>
       </>
@@ -65,8 +83,11 @@ const AudienceQuestionCard = ({
 
     return CardTemplate(
       <>
-        <input></input>
+      <form onSubmit={handleTextSubmit}>
+        <label htmlFor='audience-text-box'>Input your answer:</label>
+        <input id='audience-text-box' value={textInput} onChange={handleTextChange}></input>
         <button className="audience-submit-btn">submit</button>
+      </form>
       </>
     );
   }
@@ -77,7 +98,7 @@ const AudienceQuestionCard = ({
     return CardTemplate(
       <>
         {Object.keys(answers).map(answer => {
-          return <button>{answer}</button>;
+          return <button className={`audience-multi-btn ${answerGiven===answer? 'multi-selected': null}`} onClick={()=> handleSubmit(answer)}>{answer}</button>;
         })}
       </>
     );
