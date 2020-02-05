@@ -60,6 +60,7 @@ class PresenterView extends Component {
 
     console.log("SESSION ", session_name);
     api.getSingleSession("JessJelly", session_name).then(data => {
+      console.log(data, "an array?");
       this.setState({ sessionData: data, isLoading: false });
     });
   };

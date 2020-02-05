@@ -3,11 +3,7 @@ import "./PromptQuestionCard.css";
 import socketIOClient from "socket.io-client";
 // import formatQuestionForAudience from '../../utils/utils'
 
-const PromptQuestionCard = props => {
-  // console.log(answers);
-  // ['the question?', ['yes', 'no'], 'simple]
-  // const toVoters = [question, answers, formatQuestionForAudience(answers)]
-
+const PromptQuestionCard = ({ question, answers, type }) => {
   const sendQuestion = event => {
     const { endpoint, sessionData } = props;
     console.log(endpoint);
