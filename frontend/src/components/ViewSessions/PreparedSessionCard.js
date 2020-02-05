@@ -19,6 +19,7 @@ const PreparedSessionCard = props => {
     }
   };
 
+  console.log(props.session);
   // console.log("sessioncard props", props);
   return (
     <div className="session-card">

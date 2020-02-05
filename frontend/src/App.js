@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 import "./App.css";
-// import socketIOClient from "socket.io-client";
+import socketIOClient from "socket.io-client";
 import Header from "./components/Header/Header";
 import RegisterUser from "./components/RegisterUser/RegisterUser";
 import Home from "./components/Home/Home";
@@ -12,21 +12,21 @@ import Audience from "./components/Audience/Audience";
 
 class App extends Component {
   state = {
-    signedInUser: false,
-    endpoint: "http://localhost:5000"
+    signedInUser: "JessJelly",
+    endpoint: "http://192.168.100.127:5000/"
   };
 
   componentDidMount() {
-    // const { endpoint } = this.state;
-    // const socket = socketIOClient(endpoint);
-    // socket.on("test event", data => {
-    //   console.log(data, "data logged");
-    // });
+    const { endpoint } = this.state;
+    const socket = socketIOClient(endpoint);
+    socket.on("test event", data => {
+      console.log(data, "data logged");
+    });
   }
 
   render() {
     // const { endpoint } = this.state;
-    const { signedInUser } = this.state;
+    const { signedInUser, endpoint } = this.state;
     console.log("user signed in?", signedInUser);
     return (
       <div className="App">
@@ -40,12 +40,23 @@ class App extends Component {
           <PresenterView
             path="/sessions/:session_name"
             signedInUser={signedInUser}
+            endpoint={endpoint}
           />
           <Audience path="/joined-session/:room_code" />
         </Router>
+        <button className="prompt-btn" onClick={this.sendQuestion}>
+          Prompt
+        </button>
       </div>
     );
   }
+
+  sendQuestion = event => {
+    const { endpoint, sessionData } = this.state;
+    console.log("hey");
+    const socket = socketIOClient(endpoint);
+    socket.emit("presenter", "hey");
+  };
 
   socketTest = event => {
     // const { endpoint } = this.state;

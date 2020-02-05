@@ -14,9 +14,8 @@ class ViewSessions extends Component {
   };
 
   componentDidMount() {
-    console.log("mounting...", this.props.signedInUser);
     if (this.props.signedInUser) {
-      this.fetchSessions()
+      this.fetchSessions();
     }
   }
 
@@ -25,6 +24,7 @@ class ViewSessions extends Component {
     // console.log(data.default.sessions);
     const { sessions } = this.state;
     const { signedInUser } = this.props;
+    console.log(sessions);
     return (
       <>
         <div id="view-prepared-container">
@@ -71,7 +71,7 @@ class ViewSessions extends Component {
     const { signedInUser } = this.props;
 
     getSessions(signedInUser).then(sessions => {
-      // console.log("fetched: ", sessions);
+      console.log(sessions);
       this.setState({ sessions, isLoading: false });
     });
   };

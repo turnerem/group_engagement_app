@@ -5,7 +5,7 @@ import PromptQuestionCard from "./PromptQuestionCard";
 
 class PresenterView extends Component {
   state = {
-    sessionData: [],
+    sessionData: {},
     isLoading: true
   };
 
@@ -19,7 +19,9 @@ class PresenterView extends Component {
 
   render() {
     const { isLoading, sessionData } = this.state;
-    const { sessionCode } = this.props;
+    const { sessionCode, endpoint } = this.props;
+    console.log(sessionData);
+    console.log(endpoint);
     if (isLoading) {
       return <p>LoadingHIYA....</p>;
     }
@@ -35,11 +37,14 @@ class PresenterView extends Component {
         <div id="live-data-view">live-data-view</div>
         <ul>
           {sessionData.questions &&
-            Object.keys(sessionData.questions).map(question => {
+            sessionData.questions.map(question => {
+              console.log(sessionData);
               return (
                 <PromptQuestionCard
+                  endpoint={endpoint}
                   question={question}
                   answers={sessionData.questions[question]}
+                  sessionData={this.state.sessionData}
                   key={question}
                 />
               );
