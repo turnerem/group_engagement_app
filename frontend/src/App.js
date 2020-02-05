@@ -16,14 +16,6 @@ class App extends Component {
     endpoint: "http://192.168.100.140:5000/"
   };
 
-  componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.on("test event", data => {
-      console.log(data, "data logged");
-    });
-  }
-
   render() {
     // const { endpoint } = this.state;
     const { signedInUser, endpoint } = this.state;
@@ -42,27 +34,11 @@ class App extends Component {
             signedInUser={signedInUser}
             endpoint={endpoint}
           />
-          <Audience path="/joined-session/:room_code" />
+          <Audience path="/joined-session/:room_code" endpoint={endpoint} />
         </Router>
-        <button className="prompt-btn" onClick={this.sendQuestion}>
-          Prompt
-        </button>
       </div>
     );
   }
-
-  sendQuestion = event => {
-    const { endpoint, sessionData } = this.state;
-    console.log("hey");
-    const socket = socketIOClient(endpoint);
-    socket.emit("presenter", "hey");
-  };
-
-  socketTest = event => {
-    // const { endpoint } = this.state;
-    // const socket = socketIOClient(endpoint);
-    // socket.emit("btn click", "connected to react");
-  };
 
   signUserIn = user => {
     this.setState({ signedInUser: user });
@@ -74,25 +50,3 @@ class App extends Component {
 }
 
 export default App;
-
-{
-  /* <Router>
-          <SignIn
-            path="/signIn"
-            signUserIn={this.signUserIn}
-            signUserOut={this.signUserOut}
-          />
-          {/* <StudentSessionCode path="/join-session" endpoint={endpoint} /> */
-}
-{
-  /* <AdminSetRoom path="/admin-set-room" endpoint={endpoint} />
-          <ViewSessions path="/my-sessions" signedInUser={signedInUser} />
-          <PresenterView
-            path="/my-sessions/:session_name"
-            signedInUser={signedInUser}
-          />
-          <RegisterUser path="/register" />
-          <CreateSession path="/create-session" />
-        </Router>
-        <button onClick={this.socketTest}>test socket</button> */
-}

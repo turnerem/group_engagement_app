@@ -21,10 +21,9 @@ class ViewSessions extends Component {
 
   render() {
     // console.log("rendering...");
-    // console.log(data.default.sessions);
     const { sessions } = this.state;
     const { signedInUser } = this.props;
-    console.log("in ViewSessions >>>> ", signedInUser);
+    console.log("in ViewSessions >>>> ", sessions);
     return (
       <>
         <div id="view-prepared-container">
@@ -47,6 +46,7 @@ class ViewSessions extends Component {
                 <PreparedSessionCard
                   key={session.session_name}
                   session={session}
+                  index={index}
                 />
               );
             })}

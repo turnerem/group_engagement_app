@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./PresenterView.css";
 import * as api from "../api";
 import PromptQuestionCard from "./PromptQuestionCard";
+import socketIOClient from "socket.io-client";
 
 class PresenterView extends Component {
   state = {
@@ -9,13 +10,21 @@ class PresenterView extends Component {
     isLoading: true
   };
 
-  // const { sessionCode, signedInUser } = props;
-
   componentDidMount() {
+    const { endpoint } = this.props;
     this.fetchSession();
+
+    const socket = socketIOClient(endpoint);
+    socket.on("answer to presenter", ({ answer, index }) => {
+      console.log("answer recieved from flask!");
+      this.setState(currentState => {
+        const newState = { ...currentState };
+        console.log(newState);
+        newState.sessionData.questions[index].answers[answer] += 1;
+        return newState;
+      });
+    });
   }
-  // console.log(props, "<<<<<<<<");
-  // console.log(">>>>", sessionCode);
 
   render() {
     const { isLoading, sessionData } = this.state;
@@ -34,18 +43,21 @@ class PresenterView extends Component {
           <p>Abort Session</p>
         </div>
         <p>Connected users: _______</p>
-        <div id="live-data-view">live-data-view</div>
+        <div id="live-data-view">
+          {sessionData.questions.map(question => {
+            return <p>{JSON.stringify(question)}</p>;
+          })}
+        </div>
         <ul>
           {sessionData.questions &&
-            sessionData.questions.map(question => {
+            sessionData.questions.map((question, index) => {
               console.log(sessionData);
               return (
                 <PromptQuestionCard
                   endpoint={endpoint}
                   question={question}
-                  answers={sessionData.questions[question]}
-                  sessionData={this.state.sessionData}
                   key={question}
+                  index={index}
                 />
               );
             })}
