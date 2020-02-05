@@ -3,39 +3,35 @@ import "./PromptQuestionCard.css";
 import socketIOClient from "socket.io-client";
 // import formatQuestionForAudience from '../../utils/utils'
 
-const PromptQuestionCard = ({ question, answers, type }) => {
-  console.log(answers, 'answers is an object?');
-  // ['the question?', ['yes', 'no'], 'simple]
-  const toVoters = [question, answers, type]
+const PromptQuestionCard = ({ question, type, endpoint, index }) => {
+  const socket = socketIOClient(endpoint);
+  const sendQuestion = event => {
+    console.log("prompying question");
+    socket.emit("presenter prompt", { question, index });
+  };
+
+  const endPrompt = () => {
+    socket.emit("end prompt", "sent");
+  };
+
+  console.log(question);
   return (
-      <li className="prompt-question-container">
-        <div className="prompt-question-info">
-          <p>{question}</p>
-          <ul>
-            {answers.map(answer => {
-              return <li key={answer}>{answer}</li>;
-            })}
-          </ul>
-        </div>
-        <button className="prompt-btn">Prompt</button>
-      </li>
-
-  // sendQuestion = event => {};
-
-  // return (
-  //   <li className="prompt-question-container">
-  //     <div className="prompt-question-info">
-  //       <p>{question}</p>
-  //       <ul>
-  //         {Object.keys(answers).map(answer => {
-  //           return <li key={answer}>{answer}</li>;
-  //         })}
-  //       </ul>
-  //     </div>
-  //     <button className="prompt-btn" onClick={}>
-  //       Prompt
-  //     </button>
-  //   </li>
+    <li className="prompt-question-container">
+      <div className="prompt-question-info">
+        <p>{question.question}</p>
+        <ul>
+          {Object.keys(question.answers).map(answer => {
+            return <li key={answer}>{answer}</li>;
+          })}
+        </ul>
+      </div>
+      <button className="prompt-btn" onClick={sendQuestion}>
+        Prompt
+      </button>
+      <button className="end-prompt-btn" onClick={endPrompt}>
+        End Prompt
+      </button>
+    </li>
   );
 };
 

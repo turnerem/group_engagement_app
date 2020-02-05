@@ -25,7 +25,7 @@ def handle_my_custom_event(json, methods=['GET', 'POST']):
 @socketio.on('presenter')
 def handle_my_custom_event(data, methods=['GET', 'POST']):
     print('\n' + 'questionRecieved')
-    socketio.emit('questionForStudent', data)
+    socketio.emit('test event', data)
 
 
 @socketio.on('responseFromStudent')

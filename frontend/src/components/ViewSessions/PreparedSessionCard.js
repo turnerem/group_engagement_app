@@ -18,8 +18,7 @@ const PreparedSessionCard = props => {
       navigate(`/sessions/${sessionCode}`);
     }
   };
-
-  // console.log("sessioncard props", props);
+  console.log("session name******* ", session_name);
   return (
     <div className="session-card">
       <div className="session-card-info">

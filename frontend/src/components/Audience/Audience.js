@@ -2,29 +2,37 @@ import "./Audience.css";
 import React, { Component } from "react";
 import AudienceQuestionCard from "./AudienceQuestionCard";
 import WaitingForQuestion from "./WaitingForQuestion";
+import socketIOClient from "socket.io-client";
 
 class Audience extends Component {
   state = {
-    currentQuestion: {
-      "Shall we use dogs and paper instead?": {
-        yes: 0,
-        no: 0
-      }
-    },
+    currentQuestion: {},
 
     isWaiting: true
   };
 
   componentDidMount() {
+    const { endpoint } = this.props;
     console.log(`...mounting:`);
     console.log(
       `%c room_code: ${this.props.room_code}`,
       "background:#000; color:#bada55;"
     );
+    console.log(endpoint);
+    const socket = socketIOClient(endpoint);
+    socket.on("incoming question", question => {
+      console.log("in socket on in audience");
+      this.setQuestion(question);
+    });
+
+    socket.on("end question", () => {
+      console.log("removeing question!");
+      this.removeQuestion();
+    });
   }
 
   render() {
-    const { room_code } = this.props;
+    const { room_code, endpoint } = this.props;
     const { currentQuestion, isWaiting } = this.state;
     console.log(`...rendering: `);
     console.log(`%c room_code: ${room_code}`, "background:#000; color:red;");
@@ -35,18 +43,20 @@ class Audience extends Component {
         {isWaiting ? (
           <WaitingForQuestion />
         ) : (
-          <AudienceQuestionCard currentQuestion={currentQuestion} />
+          <AudienceQuestionCard
+            currentQuestion={currentQuestion}
+            endpoint={endpoint}
+          />
         )}
       </div>
     );
   }
 
-  setQuestion = () => {
+  setQuestion = question => {
     // this is to be set on socket event 'question prompted' (or whatever)
+    console.log("question to be displayed:", question);
     this.setState({
-      currentQuestion: {
-        "Alex to make this filled on socket event": { answer1: 0, answer2: 0 }
-      },
+      currentQuestion: question,
       isWaiting: false
     });
   };

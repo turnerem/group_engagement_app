@@ -14,18 +14,16 @@ class ViewSessions extends Component {
   };
 
   componentDidMount() {
-    console.log("mounting...", this.props.signedInUser);
     if (this.props.signedInUser) {
-      this.fetchSessions()
+      this.fetchSessions();
     }
   }
 
   render() {
     // console.log("rendering...");
-    // console.log(data.default.sessions);
     const { sessions } = this.state;
     const { signedInUser } = this.props;
-    console.log(sessions)
+    console.log("in ViewSessions >>>> ", sessions);
     return (
       <>
         <div id="view-prepared-container">
@@ -48,6 +46,7 @@ class ViewSessions extends Component {
                 <PreparedSessionCard
                   key={session.session_name}
                   session={session}
+                  index={index}
                 />
               );
             })}

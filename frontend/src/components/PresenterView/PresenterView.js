@@ -2,24 +2,35 @@ import React, { Component } from "react";
 import "./PresenterView.css";
 import * as api from "../api";
 import PromptQuestionCard from "./PromptQuestionCard";
+import socketIOClient from "socket.io-client";
 
 class PresenterView extends Component {
   state = {
-    sessionData: [],
+    sessionData: {},
     isLoading: true
   };
 
-  // const { sessionCode, signedInUser } = props;
-
   componentDidMount() {
+    const { endpoint } = this.props;
     this.fetchSession();
+
+    const socket = socketIOClient(endpoint);
+    socket.on("answer to presenter", ({ answer, index }) => {
+      console.log("answer recieved from flask!");
+      this.setState(currentState => {
+        const newState = { ...currentState };
+        console.log(newState);
+        newState.sessionData.questions[index].answers[answer] += 1;
+        return newState;
+      });
+    });
   }
-  // console.log(props, "<<<<<<<<");
-  // console.log(">>>>", sessionCode);
 
   render() {
     const { isLoading, sessionData } = this.state;
-    const { sessionCode } = this.props;
+    const { sessionCode, endpoint } = this.props;
+    console.log(sessionData);
+    console.log(endpoint);
     if (isLoading) {
       return <p>LoadingHIYA....</p>;
     }
@@ -32,16 +43,21 @@ class PresenterView extends Component {
           <p>Abort Session</p>
         </div>
         <p>Connected users: _______</p>
-        <div id="live-data-view">live-data-view</div>
+        <div id="live-data-view">
+          {sessionData.questions.map(question => {
+            return <p>{JSON.stringify(question)}</p>;
+          })}
+        </div>
         <ul>
           {sessionData.questions &&
-            sessionData.questions.map(elem => {
-              elem.answers = Object.keys(elem.answers)
-              // console.log()
+            sessionData.questions.map((question, index) => {
+              console.log(sessionData);
               return (
                 <PromptQuestionCard
-                  {...elem}
-                  key={elem.question}
+                  endpoint={endpoint}
+                  question={question}
+                  key={question}
+                  index={index}
                 />
               );
             })}
@@ -54,12 +70,11 @@ class PresenterView extends Component {
     // console.log("fething sessions...");
     const { session_name } = this.props;
 
-    console.log('SESSION ', session_name)
-    api.getSingleSession("JessJelly", session_name)
-      .then(data => {
-        console.log(data, 'an array?')
-        this.setState({sessionData: data, isLoading: false})
-    })
+    console.log("SESSION ", session_name);
+    api.getSingleSession("JessJelly", session_name).then(data => {
+      console.log(data, "an array?");
+      this.setState({ sessionData: data, isLoading: false });
+    });
   };
 }
 
