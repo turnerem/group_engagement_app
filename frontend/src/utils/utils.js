@@ -23,15 +23,11 @@ export const formatQuestionForAudience = question => {
   }
 };
 
+export const formatMulti = (arr) => {
+    arr.reduce((result, item) => {
+      result = 0;
+      return result;
+  }, {})
+}
 
-// if (answers.includes("yes") && answers.includes("no") && answers.length === 2) {
-//   // this is a binary question - yes/no answers!
-//   return "simple";
-// } else if (answers.length >= 2) {
-// // this is a multiple choice question - more than two answers!
-// return "multi";
-// } else if (answers.length === 0) {
-// // this is a text question - only one answer!
-// return "text";
-// } 
-// };
+

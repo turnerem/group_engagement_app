@@ -6,28 +6,16 @@ import {Link} from '@reach/router'
 
 class CreateSession extends Component {
   state = {
-    // goal: {
-    //   session_name: 'abcdefg',
-    //   question: [
-    //     {
-    //       "do birds exist?": {"yes": 0, "no":0},
-    //       "how big is the world": {"answers": []},
-    //       "which one isn't a powerranger": {"blue one": 0, "red one": 0, "gold one" : 0 , "donatello": 0}
-    //     }
-    //   ]
-    // }
-
-    sessionNameInput: "",
-    questionTitleInput: "",
-    savedQuestions: [],
-    // savedQuestions: [{question: 'ereoif', answers:["yes', 'no"], type: 'multi'} ],
+    session_name: "",
+    question: "",
+    questions: [],
     type: "simple",
     multiQuestionInput: [...Array(6)]
   };
 
   render() {
     console.log(this.state)
-    const { sessionNameInput, questionTitleInput, savedQuestions, type, multiQuestionInput } = this.state;
+    const { session_name, question, questions, type, multiQuestionInput } = this.state;
     return (
       <div id='create-session-container'>
         <Link to='/sessions'>Back to dashboard</Link>
@@ -36,16 +24,16 @@ class CreateSession extends Component {
             Session Name:</label>
             <input
               onChange={e => {
-                this.handleChange(e.target.value, "sessionNameInput");
+                this.handleChange(e.target.value, "session_name");
               }}
-              value={sessionNameInput}
+              value={session_name}
               id='session-name-input'
             />
           
           <h4>Questions</h4>
         <form onSubmit={this.handleSubmit} className='create-session-form'>
-            <p>Question {savedQuestions.length + 1}</p>
-          <div class="saved-question-header">
+            <p>Question {questions.length + 1}</p>
+          <div className="saved-question-header">
             <label htmlFor='question-title-input'>
               _question title:</label>
             <select onChange={this.selectType} value={this.state.type}>
@@ -62,9 +50,9 @@ class CreateSession extends Component {
           </div>
             <input
               onChange={e => {
-                this.handleChange(e.target.value, "questionTitleInput");
+                this.handleChange(e.target.value, "question");
               }}
-              value={questionTitleInput}
+              value={question}
               id='question-title-input'
               required
             />
@@ -78,10 +66,9 @@ class CreateSession extends Component {
         </form>
         <h3>{this.state.session_name}</h3>
         <ul>
-          {savedQuestions.map((question, index) => {
-            // console.log(question, "<<<<<<<<");
+          {questions.map((questionTitle, index) => {
             return (
-           <SavedQuestion question={question} index={index} key={index}/>
+           <SavedQuestion questionTitle={questionTitle} index={index} key={index}/>
             );
           })}
         </ul>
@@ -92,46 +79,50 @@ class CreateSession extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { type, questionTitleInput } = this.state;
+    const { type, question } = this.state;
   
     if (type === "text") {
       this.setState(currentState => {
         return {
-          savedQuestions: [
-            ...currentState.savedQuestions,
-            { [questionTitleInput]: { answers: [] }, type: type }
+          questions: [
+            ...currentState.questions,
+            {question: question, answers: [], type: type }
           ],
-          questionTitleInput: ""
+          question: ""
         };
       });
-      // formattedQuestion = {
-      //   [questionTitleInput]: { answers: [] }
-      // };
     }
+
     if (type === "simple") {
       this.setState(currentState => {
         return {
-          savedQuestions: [
-            ...currentState.savedQuestions,
-            { [questionTitleInput]: { yes: 0, no: 0 }, type: type }
+          question: "",
+          questions: [
+            ...currentState.questions,
+            {question: question, answers:{ yes: 0, no: 0 }, type: type }
           ],
-          questionTitleInput: ""
         };
       });
     }
-    if (type === "multi") {
+    
+    if (type === "multi") { 
+      const filteredOptions = this.state.multiQuestionInput.filter((item) => {
+        return item !== undefined;
+      })
+      const formattedObj = this.formatMulti(filteredOptions)
       this.setState(currentState => {
         return {
-          savedQuestions: [
-            ...currentState.savedQuestions,
-            { [questionTitleInput]: this.state.multiQuestionInput, type: type}
+          questions
+          : [
+            ...currentState.questions,
+            { question:question, answers: formattedObj, type: type}
           ],
-          questionTitleInput: "",
+          question: "",
           multiQuestionInput: [...Array(6)],
           type: "simple"
         }
       }
-      )}
+    )}
   };
 
   handleChange = (value, key) => {
@@ -140,7 +131,6 @@ class CreateSession extends Component {
 
   handleMulti = (event, i) => {
     const { value } = event.target;
-    // console.log(value);
     this.setState((currentState) => {
       const { multiQuestionInput } = currentState
       const updatedMulti = [...multiQuestionInput]
@@ -149,20 +139,26 @@ class CreateSession extends Component {
     })
   }
 
+  formatMulti = arr => {
+    const newObj = arr.reduce((result, item) => {
+      result[item] = 0;
+      return result;
+    }, {});
+    return newObj;
+  };
+
   handleCreateSession = () => {
     const { session_name, questions } = this.state;
     const { signedInUser } = this.props;
     postNewSession("JessJelly", session_name, questions).then(
       this.setState({
         session_name: "",
-        questions: {},
-        questionTitle: ""
+        questions: [],
       })
     );
   };
 
   selectType = event => {
-    console.log('setting type');
     const { value } = event.target;
     this.setState({ type: value });
   };
