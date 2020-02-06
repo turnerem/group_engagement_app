@@ -3,7 +3,9 @@ import axios from "axios";
 // const baseURL = "http://192.168.100.117:5000/api";
 // const baseURL = "http://192.168.100.99:5000/api";
 // // Paula's Macbook Air is 192.168.100.99
-const baseURL = "http://192.168.0.17:5000/api";
+const baseURL = "https://anonymask.herokuapp.com/api";
+
+// "http://192.168.100.127:5000/api" = alex
 
 // http://192.168.100.140:5000/api   = dougs laptop
 //  192.168.100.117 = emily
@@ -28,8 +30,8 @@ export const getSingleSession = (signedInUser, sessionName) => {
   return axios
     .get(`${baseURL}/${signedInUser}/${sessionName}`)
     .then(({ data }) => {
-      // console.log(data.sessions[0]);
-      return data.sessions[0];
+      console.log(data);
+      return data;
     }); // TODO: add catch block here
 };
 

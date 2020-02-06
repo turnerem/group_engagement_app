@@ -4,9 +4,11 @@ import socketIOClient from "socket.io-client";
 // import formatQuestionForAudience from '../../utils/utils'
 
 const PromptQuestionCard = ({ question, type, endpoint, index }) => {
-  const socket = socketIOClient(endpoint);
+  const socket = socketIOClient(endpoint, {
+    transports: ["websocket"]
+  });
   const sendQuestion = event => {
-    console.log("prompying question");
+    console.log("prompying questionlalal");
     socket.emit("presenter prompt", { question, index });
   };
 

@@ -19,7 +19,9 @@ class Audience extends Component {
       "background:#000; color:#bada55;"
     );
     console.log(endpoint);
-    const socket = socketIOClient(endpoint);
+    const socket = socketIOClient(endpoint, {
+      transports: ["websocket"]
+    });
     socket.on("incoming question", question => {
       console.log("in socket on in audience");
       this.setQuestion(question);

@@ -14,7 +14,9 @@ class PresenterView extends Component {
     const { endpoint } = this.props;
     this.fetchSession();
 
-    const socket = socketIOClient(endpoint);
+    const socket = socketIOClient(endpoint, {
+      transports: ["websocket"]
+    });
     socket.on("answer to presenter", ({ answer, index, vote }) => {
       console.log("answer recieved from flask!");
       this.setState(currentState => {
@@ -24,14 +26,14 @@ class PresenterView extends Component {
         return newState;
       });
     });
-    socket.on('text to presenter', ({textInput, index}) => {
-      console.log('text recieved from flask!')
+    socket.on("text to presenter", ({ textInput, index }) => {
+      console.log("text recieved from flask!");
       this.setState(currentState => {
-        const newState = {...currentState};
-        newState.sessionData.questions[index].answers.push(textInput)
-        return newState
-      })
-    })
+        const newState = { ...currentState };
+        newState.sessionData.questions[index].answers.push(textInput);
+        return newState;
+      });
+    });
   }
 
   render() {

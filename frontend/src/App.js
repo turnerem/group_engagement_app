@@ -12,10 +12,8 @@ import Audience from "./components/Audience/Audience";
 class App extends Component {
   state = {
     signedInUser: "JessJelly",
-    endpoint: "http://192.168.0.17:5000/"
+    endpoint: "https://anonymask.herokuapp.com:33507"
   };
-
-
 
   render() {
     // const { endpoint } = this.state;
