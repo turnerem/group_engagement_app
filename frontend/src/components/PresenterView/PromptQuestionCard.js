@@ -14,7 +14,7 @@ const PromptQuestionCard = ({ question, type, endpoint, index }) => {
     socket.emit("end prompt", "sent");
   };
 
-  console.log(question);
+  // console.log(question);
   return (
     <li className="prompt-question-container">
       <div className="prompt-question-info">
@@ -25,7 +25,7 @@ const PromptQuestionCard = ({ question, type, endpoint, index }) => {
           })}
         </ul>
       </div>
-      <div class="prompt-btn-container">
+      <div className="prompt-btn-container">
         <button className="prompt-btn" onClick={sendQuestion}>
           Prompt
         </button>

@@ -9,10 +9,12 @@ import CreateSession from "./components/CreateSession/CreateSession";
 import PresenterView from "./components/PresenterView/PresenterView";
 import Audience from "./components/Audience/Audience";
 
+import { URL } from "./config_url"
+
 class App extends Component {
   state = {
     signedInUser: "JessJelly",
-    endpoint: "http://192.168.100.247:5000/"
+    endpoint: URL
   };
 
   render() {
