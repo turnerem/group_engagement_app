@@ -3,29 +3,40 @@ import "./PromptQuestionCard.css";
 import socketIOClient from "socket.io-client";
 // import formatQuestionForAudience from '../../utils/utils'
 
-const PromptQuestionCard = props => {
+const PromptQuestionCard = ({ question, type, endpoint, index }) => {
+  const socket = socketIOClient(endpoint);
   const sendQuestion = event => {
-    const { endpoint, sessionData } = props;
-    console.log(endpoint);
-    const socket = socketIOClient(endpoint);
-    socket.emit("presenter", sessionData);
+    console.log("prompying question");
+    socket.emit("presenter prompt", { question, index });
   };
 
-  const { question, answers } = props;
-  // console.log(question);
+  const endPrompt = () => {
+    socket.emit("end prompt", "sent");
+  };
+
+  console.log(question);
   return (
     <li className="prompt-question-container">
       <div className="prompt-question-info">
-        <p>{question.question}</p>
+        <p className="prompt-question-title">{question.question}</p>
         <ul>
-          {Object.keys(question.answers).map(answer => {
-            return <li key={answer}>{answer}</li>;
+          {Object.keys(question.answers).map((answer, index) => {
+            return (
+              <li key={answer}>
+                {answer}: {Object.values(question.answers)[index]}{" "}
+              </li>
+            );
           })}
         </ul>
       </div>
-      <button className="prompt-btn" onClick={sendQuestion}>
-        Prompt
-      </button>
+      <div class="prompt-btn-container">
+        <button className="prompt-btn" onClick={sendQuestion}>
+          Prompt
+        </button>
+        <button className="end-prompt-btn" onClick={endPrompt}>
+          End Prompt
+        </button>
+      </div>
     </li>
   );
 };

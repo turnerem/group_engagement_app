@@ -1,25 +1,24 @@
-#waiting-for-question {
-  background-color: #161616;
-}
+
 
 .loading-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
-  height: 100vh;
+  height: 50%;
   width: 100%;
 }
 
 .loading {
-  display: inline-block;
+  display: flex;
   position: relative;
   width: 100%;
   height: 100%;
+  justify-content: center;
 }
 .loading div {
   display: inline-block;
-  position: absolute;
+  position: relative;
   left: 8px;
   width: 16px;
   background: rgb(94, 85, 85);

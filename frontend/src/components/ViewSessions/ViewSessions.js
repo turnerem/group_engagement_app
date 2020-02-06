@@ -21,9 +21,9 @@ class ViewSessions extends Component {
 
   render() {
     // console.log("rendering...");
-    // console.log(data.default.sessions);
     const { sessions } = this.state;
     const { signedInUser } = this.props;
+    console.log("in ViewSessions >>>> ", sessions);
     return (
       <>
         <div id="view-prepared-container">
@@ -46,6 +46,7 @@ class ViewSessions extends Component {
                 <PreparedSessionCard
                   key={session.session_name}
                   session={session}
+                  index={index}
                 />
               );
             })}
@@ -70,7 +71,13 @@ class ViewSessions extends Component {
     const { signedInUser } = this.props;
 
     getSessions(signedInUser).then(sessions => {
-      this.setState({ sessions, isLoading: false });
+      console.log("fetched: ", sessions);
+      // doug:
+      // this is to avoid crashed on no sessions found
+      // TODO - add 'no sessions yet, why not create one!' message
+      if (sessions) {
+        this.setState({ sessions, isLoading: false });
+      }
     });
   };
 }

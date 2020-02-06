@@ -32,3 +32,27 @@
   padding: 1.5em;
   margin: 1em 0;
 }
+
+.yes-selected {
+  background: rgb(46, 70, 0);
+}
+
+.no-selected {
+  background: rgb(70, 0, 0);
+}
+
+.audience-multi-btn{
+  padding: 24px 15px;
+  margin: 0.5em 0;
+  background: rgba(77, 77, 77, 0.8);
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  cursor: pointer;
+}
+
+.multi-selected {
+  background: rgba(20, 20, 20, 0.8);
+  color: #00d1b8;
+
+}
