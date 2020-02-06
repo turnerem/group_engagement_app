@@ -1,0 +1,14 @@
+.audience-view-container {
+  color: white;
+  background: #1f1f1f;
+  margin: 1em 10%;
+  padding: 3em;
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 668px) {
+  .audience-view-container {
+    margin: 3%;
+    padding: 3%;
+  }
+}

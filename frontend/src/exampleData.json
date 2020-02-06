@@ -1,0 +1,93 @@
+{
+  "_id": { "$oid": "5e3410e2855008f5211330c2" },
+  "user_name": "JessJelly",
+  "sessions": [
+    {
+      "session_name": "Painting cars",
+      "questions": [
+        {
+          "question": "Are easels circles",
+          "answers": {
+            "yes": 0,
+            "no": 0
+          },
+          "type": "simple"
+        },
+        {
+          "question": "Do I have paint on my face",
+          "answers": {
+            "lots": 0,
+            "splotch": 0
+          },
+          "type": "multi"
+        },
+        {
+          "question": "Can I go now?",
+          "answers": {
+            "yes": 0,
+            "no": 0
+          },
+          "type": "simple"
+        }
+      ]
+    },
+    {
+      "session_name": "Surfing",
+      "questions": [
+        {
+          "question": "Can we go surfing",
+          "answers": {
+            "yes": 0,
+            "no": 0
+          },
+          "type": "simple"
+        },
+        {
+          "question": "Can we all just go surfing now?",
+          "answers": {
+            "absolutely": 0,
+            "absolutely not": 0
+          },
+          "type": "simple"
+        },
+        {
+          "question": "Should we bring a barbecue",
+          "answers": {
+            "yes": 0,
+            "no": 0
+          },
+          "type": "simple"
+        }
+      ]
+    },
+    {
+      "session_name": "Painting Mars Bars",
+      "questions": [
+        {
+          "question": "Are chocolates paints",
+          "answers": {
+            "yes": 0,
+            "no": 0
+          },
+          "type": "simple"
+        },
+        {
+          "question": "Do I have paint on my face",
+          "answers": {
+            "lots": 0,
+            "splotch": 0
+          },
+          "type": "multi"
+        },
+        {
+          "question": "Can I have one?",
+          "answers": {
+            "yes": 0,
+            "no": 0
+          },
+          "type": "simple"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+#session-view-container {
+  background-color: #2d2d2e;
+  color: white;
+  text-align: left;
+  padding: 3em 10%;
+}
+
+#session-view-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2em 0;
+}
+
+#live-data-view {
+  background-color: rgb(207, 207, 207);
+  color: black;
+  padding: 10em;
+}
+
+#loading-session {
+  color: white;
+  font-size: 2em;
+  padding: 10%;
+}
+
+@media only screen and (max-width: 668px) {
+  #session-view-container {
+    padding: 3%;
+  }
+}

@@ -1,0 +1,52 @@
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 50%;
+  max-width: 100%;
+}
+
+.loading {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+.loading div {
+  display: inline-block;
+  position: relative;
+  left: 8px;
+  width: 16px;
+  background: rgb(94, 85, 85);
+  animation: loading 1s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.loading div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.loading div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.loading div:nth-child(3) {
+  left: 56px;
+  animation-delay: -0s;
+}
+@keyframes loading {
+  0% {
+    top: 8px;
+    height: 64px;
+    background-color: white;
+  }
+  50%,
+  100% {
+    top: 24px;
+    height: 32px;
+  }
+}
+
+#waiting-for-questions-text {
+  color: white;
+  padding: 1em;
+}
