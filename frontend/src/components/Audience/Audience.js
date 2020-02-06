@@ -38,21 +38,27 @@ class Audience extends Component {
     const { currentQuestion, isWaiting } = this.state;
     console.log(`...rendering: `);
     console.log(`%c room_code: ${room_code}`, "background:#000; color:red;");
-    return (
-      <div className="audience-view-container">
-        {/* <p>room_code: {room_code}</p> 
-        <p>You are in a room with _*_ others</p> */}
-        {/* TODO: make these ^^^ functional?? */}
-        {isWaiting ? (
+    if (isWaiting) {
+      return (
+        <>
+          <p id="waiting-for-questions-text">waiting for questions</p>
+
           <WaitingForQuestion />
-        ) : (
+        </>
+      );
+    } else {
+      return (
+        <div className="audience-view-container">
+          {/* <p>room_code: {room_code}</p> 
+          <p>You are in a room with _*_ others</p> */}
+          {/* TODO: make these ^^^ functional?? */}
           <AudienceQuestionCard
             currentQuestion={currentQuestion}
             endpoint={endpoint}
           />
-        )}
-      </div>
-    );
+        </div>
+      );
+    }
   }
 
   setQuestion = question => {

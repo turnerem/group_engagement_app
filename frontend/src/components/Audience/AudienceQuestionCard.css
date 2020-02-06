@@ -13,6 +13,7 @@
   color: white;
   padding: 1.5em;
   margin: 1em 0;
+  width: 90%;
 }
 
 .audience-yes-btn {
@@ -20,8 +21,9 @@
   border-radius: 8px;
   border: 0;
   color: rgb(0, 0, 0);
-  padding: 1.5em;
+  padding: 20%;
   margin: 1em 0;
+  font-size: 1.5em;
 }
 
 .audience-no-btn {
@@ -29,8 +31,9 @@
   border-radius: 8px;
   border: 0;
   color: rgb(0, 0, 0);
-  padding: 1.5em;
+  padding: 20%;
   margin: 1em 0;
+  font-size: 1.5em;
 }
 
 .yes-selected {
@@ -41,7 +44,7 @@
   background: rgb(70, 0, 0);
 }
 
-.audience-multi-btn{
+.audience-multi-btn {
   padding: 24px 15px;
   margin: 0.5em 0;
   background: rgba(77, 77, 77, 0.8);
@@ -49,10 +52,28 @@
   border: 0;
   color: white;
   cursor: pointer;
+  font-size: 1.5em;
 }
 
 .multi-selected {
   background: rgba(20, 20, 20, 0.8);
   color: #00d1b8;
+}
 
+#audience-text-box {
+  width: 90%;
+  height: 56px;
+  border-radius: 3px;
+  border: 0;
+  font-size: 20px;
+  text-indent: 10px;
+  margin: 1.5em 0;
+}
+
+.audience-instruction {
+  color: rgb(126, 126, 126);
+}
+
+.audience-card-question {
+  font-size: 25px;
 }

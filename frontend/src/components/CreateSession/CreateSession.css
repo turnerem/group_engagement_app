@@ -1,8 +1,5 @@
-
-
-
 #create-session-container {
-  margin: 4em 13em;
+  margin: 4em 10%;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -26,8 +23,8 @@
   padding: 1em;
 }
 
-.create-session-btn{
-  background: #00D1B8;
+.create-session-btn {
+  background: #00d1b8;
   border: 0;
   border-radius: 8px;
   padding: 1em;

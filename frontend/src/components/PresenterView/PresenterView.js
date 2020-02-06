@@ -3,6 +3,7 @@ import "./PresenterView.css";
 import * as api from "../api";
 import PromptQuestionCard from "./PromptQuestionCard";
 import socketIOClient from "socket.io-client";
+import WaitingForQuestion from "../Audience/WaitingForQuestion";
 
 class PresenterView extends Component {
   state = {
@@ -42,7 +43,12 @@ class PresenterView extends Component {
     console.log(sessionData);
     console.log(endpoint);
     if (isLoading) {
-      return <p>LoadingHIYA....</p>;
+      return (
+        <>
+          <p id="loading-session">Loading Session....</p>
+          <WaitingForQuestion />
+        </>
+      );
     }
 
     return (

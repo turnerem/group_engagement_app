@@ -15,7 +15,7 @@ const AudienceQuestionCard = ({
 
   const CardTemplate = buttons => (
     <div className="audience-card-container">
-      <p>{question}</p>
+      <p className="audience-card-question">{question}</p>
       {buttons}
     </div>
   );
@@ -87,7 +87,9 @@ const AudienceQuestionCard = ({
     return CardTemplate(
       <>
         <form onSubmit={handleTextSubmit}>
-          <label htmlFor="audience-text-box">Input your answer:</label>
+          <label htmlFor="audience-text-box" className="audience-instruction">
+            Input your answer:
+          </label>
           <input
             id="audience-text-box"
             value={textInput}

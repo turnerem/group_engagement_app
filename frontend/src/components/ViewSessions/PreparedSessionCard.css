@@ -10,15 +10,14 @@
   justify-content: space-between;
 }
 
-.session-card-info > li >
-p {
+.session-card-info > li {
   text-align: left;
   /* text-indent: 1em; */
   color: white;
 }
 
 .session-question-count {
-  color: rgb(170, 170, 170);
+  color: rgb(144, 144, 144);
 }
 
 .session-card-btns {
@@ -30,7 +29,8 @@ p {
   background: #00fbdd;
   border: 0;
   padding: 20px 50px;
-  border-radius: 8px; margin-bottom: 0.5em;
+  border-radius: 8px;
+  margin-bottom: 0.5em;
   cursor: pointer;
 }
 
@@ -45,4 +45,11 @@ p {
 
 .session-time {
   color: rgb(134, 134, 134);
+}
+
+@media only screen and (max-width: 668px) {
+  .start-session-btn {
+    padding: 10px 0;
+    width: 10em;
+  }
 }

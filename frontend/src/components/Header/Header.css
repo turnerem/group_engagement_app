@@ -1,19 +1,29 @@
 #app-header {
-  background-color: #00D1B8;
+  background-color: #00d1b8;
   padding: 2em;
 }
 
 #app-header h1 {
   color: rgb(0, 0, 0);
-  font-family: 'ETC Grandstander';
-  font-variation-settings: 'wght' 600;
-  font-size: 4em
+  font-family: "ETC Grandstander";
+  font-variation-settings: "wght" 600;
+  font-size: 4em;
 }
 
 #askfast {
- color:rgb(0, 117, 104);
+  color: rgb(0, 117, 104);
 }
 
 #fastans {
   color: #004941;
+}
+
+@media only screen and (max-width: 668px) {
+  #app-header h1 {
+    font-size: 2em;
+  }
+
+  #app-header {
+    padding: 1em;
+  }
 }

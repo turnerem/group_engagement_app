@@ -9,16 +9,15 @@ const PreparedSessionCard = props => {
 
   const [sessionCode, setSessionCode] = useState("");
 
-  const handleChange = ({ target: { value } }) => {
-    setSessionCode(value);
-  };
+  // const handleChange = ({ target: { value } }) => {
+  //   setSessionCode(value);
+  // };
 
-  const handleSessionStart = () => {
-    if (sessionCode) {
-      navigate(`/sessions/${sessionCode}`);
-    }
-  };
-  console.log("session name******* ", session_name);
+  // const handleSessionStart = () => {
+  //   if (sessionCode) {
+  //     navigate(`/sessions/${sessionCode}`);
+  //   }
+  // };
   return (
     <div className="session-card">
       <div className="session-card-info">
@@ -36,8 +35,8 @@ const PreparedSessionCard = props => {
         <Link to={session_name}>
           <button className="start-session-btn">Start Session</button>
         </Link>
-        <input type="input" onChange={handleChange} />
-        <button onClick={handleSessionStart}>Set and go!</button>
+        {/* <input type="input" onChange={handleChange} />
+        <button onClick={handleSessionStart}>Set and go!</button> */}
         <button className="edit-session-btn">Edit Session</button>
       </div>
     </div>

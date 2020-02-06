@@ -1,7 +1,12 @@
 #view-prepared-container {
   color: white;
-  padding: 3em 10em;
+  padding: 3em 10%;
   background-color: #2d2d2e;
+}
+
+.loading-profile {
+  color: white;
+  padding: 10%;
 }
 
 #view-prepared-header {
@@ -37,5 +42,19 @@
 
 #view-previous-container {
   color: white;
-  padding: 3em 10em;
+  padding: 3em 10%;
+}
+
+@media only screen and (max-width: 668px) {
+  #view-prepared-container {
+    padding: 1em 5%;
+  }
+
+  #view-previous-container {
+    padding: 1em 5%;
+  }
+
+  #view-prepared-header h2 {
+    font-size: 25px;
+  }
 }
