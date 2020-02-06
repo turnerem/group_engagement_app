@@ -16,7 +16,7 @@ class BarChart extends Component {
     barChartD3.update(
       this.refs.bar_chart,
       this.props.data,
-      this.props.config
+      this.props.configs
     )
   }
 

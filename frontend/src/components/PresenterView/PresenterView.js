@@ -4,10 +4,14 @@ import * as api from "../api";
 import PromptQuestionCard from "./PromptQuestionCard";
 import socketIOClient from "socket.io-client";
 import WaitingForQuestion from "../Audience/WaitingForQuestion";
+import BarChart from "./BarChart";
+import ChartPlaceholder from "./ChartPlaceholder";
+import { formatD3Data } from '../../utils/utils'
 
 class PresenterView extends Component {
   state = {
     sessionData: {},
+    promptedQuestion: 2,
     isLoading: true
   };
 
@@ -38,10 +42,26 @@ class PresenterView extends Component {
   }
 
   render() {
-    const { isLoading, sessionData } = this.state;
+    const { isLoading, sessionData, promptedQuestion } = this.state;
     const { sessionCode, endpoint } = this.props;
     console.log(sessionData);
     console.log(endpoint);
+    const data = (sessionData.questions) && formatD3Data(sessionData.questions[promptedQuestion].answers)
+
+    const wScreen = window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth,
+      hScreen = window.innerHeight
+        || document.documentElement.clientHeight
+        || document.body.clientHeight
+        
+    const configs = {
+          margin: {bottom: hScreen * .1},
+          height: hScreen * .6,
+          width: wScreen * .7,
+          nAttendees: 20
+        }
+
     if (isLoading) {
       return (
         <>
@@ -59,6 +79,9 @@ class PresenterView extends Component {
           <p>Abort Session</p>
         </div>
         <p>Connected users: _______</p>
+        {(promptedQuestion === -1) ? 
+          (<ChartPlaceholder configs={configs} id="live-data-view"/>) :
+          (<BarChart data={data} configs={configs} id="live-data-view" />) }
         <div id="live-data-view">
           {sessionData.questions.map(question => {
             return <p>{JSON.stringify(question)}</p>;
@@ -72,6 +95,7 @@ class PresenterView extends Component {
                 <PromptQuestionCard
                   endpoint={endpoint}
                   question={question}
+                  activeQIdx = {this.activeQIdx}
                   key={question}
                   index={index}
                 />
