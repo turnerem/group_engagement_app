@@ -12,7 +12,7 @@ import Audience from "./components/Audience/Audience";
 class App extends Component {
   state = {
     signedInUser: "JessJelly",
-    endpoint: "https://anonymask.herokuapp.com:33507"
+    endpoint: "http://192.168.100.127:5000"
   };
 
   render() {
