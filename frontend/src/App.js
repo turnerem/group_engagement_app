@@ -12,10 +12,8 @@ import Audience from "./components/Audience/Audience";
 class App extends Component {
   state = {
     signedInUser: "JessJelly",
-    endpoint: "http://192.168.0.17:5000/"
+    endpoint: "http://0.0.0.0:5000/"
   };
-
-
 
   render() {
     // const { endpoint } = this.state;
