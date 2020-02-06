@@ -24,11 +24,6 @@ class ViewSessions extends Component {
     // console.log(data.default.sessions);
     const { sessions } = this.state;
     const { signedInUser } = this.props;
-<<<<<<< HEAD
-    console.log(sessions);
-=======
-    console.log(sessions)
->>>>>>> 9c8c9f391cb67923e32335446bae97b8bc7a44cc
     return (
       <>
         <div id="view-prepared-container">
@@ -75,11 +70,6 @@ class ViewSessions extends Component {
     const { signedInUser } = this.props;
 
     getSessions(signedInUser).then(sessions => {
-<<<<<<< HEAD
-      console.log(sessions);
-=======
-      console.log("fetched: ", sessions);
->>>>>>> 9c8c9f391cb67923e32335446bae97b8bc7a44cc
       this.setState({ sessions, isLoading: false });
     });
   };

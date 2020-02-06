@@ -3,7 +3,7 @@ import "./PromptQuestionCard.css";
 import socketIOClient from "socket.io-client";
 // import formatQuestionForAudience from '../../utils/utils'
 
-const PromptQuestionCard = ({ question, answers, type }) => {
+const PromptQuestionCard = props => {
   const sendQuestion = event => {
     const { endpoint, sessionData } = props;
     console.log(endpoint);
@@ -12,7 +12,7 @@ const PromptQuestionCard = ({ question, answers, type }) => {
   };
 
   const { question, answers } = props;
-  console.log(question);
+  // console.log(question);
   return (
     <li className="prompt-question-container">
       <div className="prompt-question-info">
