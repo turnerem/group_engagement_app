@@ -22,7 +22,7 @@ class CreateSession extends Component {
       type,
       multiQuestionInput
     } = this.state;
-    
+
     return (
       <div id="create-session-container">
         <Link to="/sessions">Back to dashboard</Link>
@@ -63,6 +63,8 @@ class CreateSession extends Component {
             required
           />
 
+          {type === "multi" ? <p>requires at least two answers</p> : null}
+
           {type === "multi" &&
             multiQuestionInput.map((elem, i) => {
               multiQuestionInput.filter(elem => elem !== undefined);
@@ -83,6 +85,7 @@ class CreateSession extends Component {
                 />
               );
             })}
+
           <button className="add-question-btn">add a question</button>
         </form>
         <h3>{this.state.session_name}</h3>
