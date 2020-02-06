@@ -24,6 +24,24 @@
   padding: 10%;
 }
 
+#abort-session{
+  color: #00d1b8;
+  text-decoration: underline;
+}
+
+#end-session-btn {
+  background: #00d1b8;
+  color: rgb(0, 0, 0);
+  border: 0;
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 1.5em 3em;
+  margin: 0.5em;
+  width: 100%;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 668px) {
   #session-view-container {
     padding: 3%;

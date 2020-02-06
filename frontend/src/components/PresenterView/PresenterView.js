@@ -56,9 +56,8 @@ class PresenterView extends Component {
         {/* <p className="component-identifier">PresenterView component</p> */}
         <div id="session-view-header">
           <h3>{sessionCode}</h3>
-          <p>Abort Session</p>
+          <p id='abort-session'>Abort Session</p>
         </div>
-        <p>Connected users: _______</p>
         <div id="live-data-view">
           {sessionData.questions.map(question => {
             return <p>{JSON.stringify(question)}</p>;
@@ -78,6 +77,7 @@ class PresenterView extends Component {
               );
             })}
         </ul>
+        <button id='end-session-btn'>End Session</button>
       </div>
     );
   }
