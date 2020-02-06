@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { postNewSession } from "../api";
 import "./CreateSession.css";
 import SavedQuestion from "./SavedQuestion";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 
 class CreateSession extends Component {
   state = {
@@ -22,7 +22,7 @@ class CreateSession extends Component {
       type,
       multiQuestionInput
     } = this.state;
-    console.log(this.state.session_name.length);
+    
     return (
       <div id="create-session-container">
         <Link to="/sessions">Back to dashboard</Link>
@@ -180,12 +180,13 @@ class CreateSession extends Component {
   handleCreateSession = () => {
     const { session_name, questions } = this.state;
     const { signedInUser } = this.props;
-    postNewSession("JessJelly", session_name, questions).then(
+    postNewSession(signedInUser, session_name, questions).then(
       this.setState({
         session_name: "",
         questions: []
       })
     );
+    navigate("/sessions");
   };
 
   selectType = event => {
