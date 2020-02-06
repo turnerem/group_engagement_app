@@ -22,3 +22,9 @@
 .session-name {
   color: white;
 }
+
+@media only screen and (max-width: 668px) {
+  .previous-analysis-btn {
+    padding: 25px 35px;
+  }
+}
