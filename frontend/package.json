@@ -10,6 +10,7 @@
     "axios": "^0.19.2",
     "chai": "^4.2.0",
     "cors": "^2.8.5",
+    "d3": "^5.15.0",
     "mocha": "^7.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -20,6 +21,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test-utils": "mocha src/utils",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

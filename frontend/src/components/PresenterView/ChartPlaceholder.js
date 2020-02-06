@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import barChartD3 from './barChartD3'
 
-class BarChart extends Component {
+class ChartPlaceholder extends Component {
 
   componentDidMount() {
     console.log('mounting')
@@ -12,21 +12,6 @@ class BarChart extends Component {
     )
   }
 
-  componentDidUpdate() {
-    barChartD3.update(
-      this.refs.bar_chart,
-      this.props.data,
-      this.props.configs
-    )
-  }
-
-  // componentWillUnmount() {
-  //   barChartD3.destroy(this.bar_chart)
-  // }
-
-  // _setRef = (componentNode) => {
-  //   this._rootNode = componentNode;
-  // }
   render() {
     return (
       <div className='bar_chart' ref='bar_chart' />
@@ -37,4 +22,4 @@ class BarChart extends Component {
   }
 }
 
-export default BarChart;
+export default ChartPlaceholder;

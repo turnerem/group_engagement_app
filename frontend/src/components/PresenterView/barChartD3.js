@@ -1,6 +1,13 @@
 const d3 = require('d3')
 const barChartD3 = {};
 
+barChartD3.placeholder = function(el, configs) {
+  d3.select(el).append('svg')
+    .attr('class', 'd3').attr('width', configs.width)
+    .attr('height', configs.height + configs.margin.bottom)
+    .style('border', '1px solid black')
+}
+
 barChartD3.create = function(el, data, configs) {
   console.log('creating', configs.height, configs.width)
   
@@ -31,6 +38,7 @@ barChartD3.create = function(el, data, configs) {
 
 barChartD3._scales = function(labels, configs) {
   const { height, nAttendees } = configs
+  console.log('height for scale', height, nAttendees)
   return {
     y: height * .95 / nAttendees,
     // determine transform for rotating text based on pixel size
@@ -44,8 +52,8 @@ barChartD3.initialise = function(el, data, configs) {
 
 barChartD3.update = function(el, data, configs) {
   const scales = this._scales({}, configs)
-  console.log('updating')
-  this._updateBars(el, data, configs, scales)
+  console.log('updating, scales:', scales)
+  this._updateBars(configs, scales)
 }
 
 barChartD3.destroy = function(el) {
@@ -92,11 +100,11 @@ barChartD3._drawBars = function(el, data, configs) {
 }
 
 barChartD3._updateBars = function(configs, scales) {
-  
+    
     d3.selectAll('.d3-bars rect').transition()
       .duration(1000)
-      .attr('y', function(d) {console.log('starting transition'); return configs.height - d.y })
-      .attr('height', function(d) { return scales.y * d.y })
+      .attr('y', function(d) {console.log('starting transition'); return configs.height - scales.y * d.y })
+      .attr('height', function(d) {console.log(scales.y, d.y); return scales.y * d.y })
       .attr('fill', '#ffb347')
       .delay((d, i) => {return i * 30})
 

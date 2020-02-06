@@ -3,11 +3,12 @@ import "./PromptQuestionCard.css";
 import socketIOClient from "socket.io-client";
 // import formatQuestionForAudience from '../../utils/utils'
 
-const PromptQuestionCard = ({ question, type, endpoint, index }) => {
+const PromptQuestionCard = ({ question, type, activeQIdx, endpoint, index }) => {
   const socket = socketIOClient(endpoint);
-  const sendQuestion = event => {
+  const sendQuestion = (event, cb) => {
     console.log("prompying question");
     socket.emit("presenter prompt", { question, index });
+    cb(index)
   };
 
   const endPrompt = () => {
@@ -26,7 +27,10 @@ const PromptQuestionCard = ({ question, type, endpoint, index }) => {
         </ul>
       </div>
       <div className="prompt-btn-container">
-        <button className="prompt-btn" onClick={sendQuestion}>
+        <button className="prompt-btn" onClick={(event) => {
+          
+          sendQuestion(event, activeQIdx)
+          }}>
           Prompt
         </button>
         <button className="end-prompt-btn" onClick={endPrompt}>

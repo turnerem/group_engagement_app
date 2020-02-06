@@ -1,9 +1,10 @@
 import axios from "axios";
-
+// import LOCAL_HOST_URL from '../config_url'
 // const baseURL = "http://192.168.100.117:5000/api";
 // const baseURL = "http://192.168.100.99:5000/api";
 // // Paula's Macbook Air is 192.168.100.99
-const baseURL = "https://anonymask.herokuapp.com/api";
+// const baseURL = `${LOCAL_HOST_URL}api`;
+const baseURL = `http://192.168.100.117:5000/api`;
 
 // http://192.168.100.140:5000/api   = dougs laptop
 //  192.168.100.117 = emily

@@ -9,12 +9,13 @@ import CreateSession from "./components/CreateSession/CreateSession";
 import PresenterView from "./components/PresenterView/PresenterView";
 import Audience from "./components/Audience/Audience";
 
-import { URL } from "./config_url"
+import { LOCAL_HOST_URL } from "./config_url"
 
 class App extends Component {
   state = {
     signedInUser: "JessJelly",
-    endpoint: URL
+    // endpoint: LOCAL_HOST_URL
+    endpoint: 'http://192.168.100.117:5000/'
   };
 
   render() {

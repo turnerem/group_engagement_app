@@ -4,15 +4,20 @@ import * as api from "../api";
 import PromptQuestionCard from "./PromptQuestionCard";
 import socketIOClient from "socket.io-client";
 import WaitingForQuestion from "../Audience/WaitingForQuestion";
+import BarChart from "./BarChart";
+import ChartPlaceholder from "./ChartPlaceholder";
+import { formatD3Data } from '../../utils/utils'
 
 class PresenterView extends Component {
   state = {
     sessionData: {},
+    promptedQuestion: 2,
     isLoading: true
   };
 
   componentDidMount() {
     const { endpoint } = this.props;
+    console.log('MOUNTING')
     this.fetchSession();
 
     const socket = socketIOClient(endpoint);
@@ -36,10 +41,29 @@ class PresenterView extends Component {
   }
 
   render() {
-    const { isLoading, sessionData } = this.state;
+    console.log('RERENDERING')
+    const { isLoading, sessionData, promptedQuestion } = this.state;
     const { sessionCode, endpoint } = this.props;
-    console.log(sessionData);
+    console.log(sessionData, '\n\n\nprompted q', (sessionData.questions) && sessionData.questions[0]);
     console.log(endpoint);
+    const data = (sessionData.questions) && formatD3Data(sessionData.questions[promptedQuestion].answers)
+    
+    const wScreen = window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth,
+      hScreen = window.innerHeight
+        || document.documentElement.clientHeight
+        || document.body.clientHeight
+        const configs = {
+          margin: {bottom: hScreen * .1},
+          height: hScreen * .6,
+          width: wScreen * .7,
+          nAttendees: 20
+        }
+    console.log('the configs', configs)
+
+
+
     if (isLoading) {
       return (
         <>
@@ -50,6 +74,16 @@ class PresenterView extends Component {
     }
 
     return (
+      
+    //     const qSel = sessionData[promptedQuestion]
+    // const data = formatD3Data(qSel.answers)
+
+    // const data = [
+    //   {y: 12, id: 1, label: 'yes'},
+    //   {y: 7, id: 2, label: 'no'}  
+    // ]
+    
+      
       <div id="session-view-container">
         {/* <p className="component-identifier">PresenterView component</p> */}
         <div id="session-view-header">
@@ -57,6 +91,9 @@ class PresenterView extends Component {
           <p>Abort Session</p>
         </div>
         <p>Connected users: _______</p>
+        {(promptedQuestion === -1) ? 
+          (<ChartPlaceholder configs={configs} id="live-data-view"/>) :
+          (<BarChart data={data} configs={configs} id="live-data-view" />) }
         <div id="live-data-view">
           {sessionData.questions.map(question => {
             return <p>{JSON.stringify(question)}</p>;
@@ -70,6 +107,7 @@ class PresenterView extends Component {
                 <PromptQuestionCard
                   endpoint={endpoint}
                   question={question}
+                  activeQIdx = {this.activeQIdx}
                   key={question}
                   index={index}
                 />
@@ -90,6 +128,10 @@ class PresenterView extends Component {
       this.setState({ sessionData: data, isLoading: false });
     });
   };
+
+  activeQIdx = (index) => {
+    this.setState({promptedQuestion: index})
+  }
 }
 
 export default PresenterView;

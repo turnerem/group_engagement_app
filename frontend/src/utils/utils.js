@@ -1,4 +1,4 @@
-export const formatQuestionForAudience = question => {
+exports.formatQuestionForAudience = question => {
   // This returns array: ['questionTitle', [answers, answers], 'type']
 
   // expected format:
@@ -23,11 +23,19 @@ export const formatQuestionForAudience = question => {
   }
 };
 
-export const formatMulti = (arr) => {
+exports.formatMulti = (arr) => {
     arr.reduce((result, item) => {
       result = 0;
       return result;
   }, {})
 }
 
+exports.formatD3Data = (obj) => {
+  const objKeys = Object.keys(obj)
+  const arr = []
+  objKeys.forEach((ans, i) => {
+    arr.push({y: obj[ans], id: i + 1, label: ans})
+  }) 
+  return arr
+}
 
