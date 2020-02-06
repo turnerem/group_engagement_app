@@ -28,8 +28,8 @@ export const getSingleSession = (signedInUser, sessionName) => {
   return axios
     .get(`${baseURL}/${signedInUser}/${sessionName}`)
     .then(({ data }) => {
-      // console.log(data.sessions[0]);
-      return data.sessions[0];
+      console.log(data, "<<<<<<<data!");
+      return data;
     }); // TODO: add catch block here
 };
 
