@@ -17,3 +17,15 @@
   color: black;
   padding: 10em;
 }
+
+#loading-session {
+  color: white;
+  font-size: 2em;
+  padding: 10%;
+}
+
+@media only screen and (max-width: 668px) {
+  #session-view-container {
+    padding: 3%;
+  }
+}

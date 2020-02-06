@@ -37,7 +37,13 @@ class Audience extends Component {
     console.log(`...rendering: `);
     console.log(`%c room_code: ${room_code}`, "background:#000; color:red;");
     if (isWaiting) {
-      return <WaitingForQuestion />;
+      return (
+        <>
+          <p id="waiting-for-questions-text">waiting for questions</p>
+
+          <WaitingForQuestion />
+        </>
+      );
     } else {
       return (
         <div className="audience-view-container">

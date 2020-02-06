@@ -5,7 +5,6 @@ const WaitingForQuestion = () => {
   return (
     <>
       {" "}
-      <p id="waiting-for-questions-text">waiting for questions</p>
       <div className="loading-container">
         <div className="loading">
           <div></div>

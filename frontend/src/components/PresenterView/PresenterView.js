@@ -3,6 +3,7 @@ import "./PresenterView.css";
 import * as api from "../api";
 import PromptQuestionCard from "./PromptQuestionCard";
 import socketIOClient from "socket.io-client";
+import WaitingForQuestion from "../Audience/WaitingForQuestion";
 
 class PresenterView extends Component {
   state = {
@@ -24,14 +25,14 @@ class PresenterView extends Component {
         return newState;
       });
     });
-    socket.on('text to presenter', ({textInput, index}) => {
-      console.log('text recieved from flask!')
+    socket.on("text to presenter", ({ textInput, index }) => {
+      console.log("text recieved from flask!");
       this.setState(currentState => {
-        const newState = {...currentState};
-        newState.sessionData.questions[index].answers.push(textInput)
-        return newState
-      })
-    })
+        const newState = { ...currentState };
+        newState.sessionData.questions[index].answers.push(textInput);
+        return newState;
+      });
+    });
   }
 
   render() {
@@ -40,7 +41,12 @@ class PresenterView extends Component {
     console.log(sessionData);
     console.log(endpoint);
     if (isLoading) {
-      return <p>LoadingHIYA....</p>;
+      return (
+        <>
+          <p id="loading-session">Loading Session....</p>
+          <WaitingForQuestion />
+        </>
+      );
     }
 
     return (
