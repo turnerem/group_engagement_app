@@ -15,7 +15,9 @@ class PresenterView extends Component {
     const { endpoint } = this.props;
     this.fetchSession();
 
-    const socket = socketIOClient(endpoint);
+    const socket = socketIOClient(endpoint, {
+      transports: ["websocket"]
+    });
     socket.on("answer to presenter", ({ answer, index, vote }) => {
       console.log("answer recieved from flask!");
       this.setState(currentState => {
