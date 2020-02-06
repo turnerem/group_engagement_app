@@ -45,6 +45,7 @@ const AudienceQuestionCard = ({
   };
   const handleTextSubmit = event => {
     event.preventDefault();
+    setAnswerGiven(textInput);
     console.log("sending...", textInput);
     socket.emit("text given", { textInput, index });
   };
@@ -90,12 +91,18 @@ const AudienceQuestionCard = ({
           <label htmlFor="audience-text-box" className="audience-instruction">
             Input your answer:
           </label>
-          <input
-            id="audience-text-box"
-            value={textInput}
-            onChange={handleTextChange}
-          ></input>
-          <button className="audience-submit-btn">submit</button>
+          {answerGiven === "" ? (
+            <>
+              <input
+                id="audience-text-box"
+                value={textInput}
+                onChange={handleTextChange}
+              ></input>
+              <button className="audience-submit-btn">submit</button>
+            </>
+          ) : (
+            <p>Thanks for your answer!</p>
+          )}
         </form>
       </>
     );

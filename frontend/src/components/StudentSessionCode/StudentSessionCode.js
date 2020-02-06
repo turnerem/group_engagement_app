@@ -7,11 +7,12 @@ import { navigate } from "@reach/router";
 class StudentSessionCode extends Component {
   state = {
     sessionCodeInput: "",
-    roomEntered: false
+    roomEntered: false,
+    wrongCode: false
   };
 
   render() {
-    const { sessionCodeInput, roomEntered } = this.state;
+    const { sessionCodeInput, roomEntered, wrongCode } = this.state;
     if (roomEntered) {
       return (
         <div id="student-session-code-container">
@@ -32,6 +33,7 @@ class StudentSessionCode extends Component {
           <label htmlFor="join-room-input" id="join-room-label">
             Enter The Room Code:{" "}
           </label>
+          {wrongCode && <p id="wrong-code-msg">Room code not in use</p>}
           <input
             value={sessionCodeInput}
             onChange={this.handleChange}
@@ -52,10 +54,14 @@ class StudentSessionCode extends Component {
   };
 
   handleSubmit = event => {
-    const { sessionCodeInput } = this.state;
+    const { sessionCodeInput, wrongCode } = this.state;
     event.preventDefault();
-    this.setSessionListener(sessionCodeInput);
-    this.setState({ sessionCodeInput: "", roomEntered: true });
+    if (sessionCodeInput !== "hireus") {
+      this.setState({ wrongCode: true });
+    } else {
+      this.setSessionListener(sessionCodeInput);
+      // this.setState({ sessionCodeInput: "", roomEntered: true });
+    }
   };
 
   setSessionListener = sessionCode => {

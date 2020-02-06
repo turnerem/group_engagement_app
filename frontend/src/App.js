@@ -12,7 +12,7 @@ import Audience from "./components/Audience/Audience";
 class App extends Component {
   state = {
     signedInUser: "JessJelly",
-    endpoint: "http://192.168.100.127:5000"
+    endpoint: "http://192.168.100.247:5000"
   };
 
   render() {

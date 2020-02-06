@@ -37,6 +37,10 @@
   cursor: pointer;
 }
 
+#wrong-code-msg {
+  color: red;
+}
+
 #join-room-btn:hover {
   background: rgb(60, 255, 232);
 }

@@ -84,10 +84,10 @@ class PresenterView extends Component {
 
   fetchSession = () => {
     // console.log("fething sessions...");
-    const { session_name } = this.props;
+    const { session_name, signedInUser } = this.props;
 
     console.log("SESSION ", session_name);
-    api.getSingleSession("JessJelly", session_name).then(data => {
+    api.getSingleSession(signedInUser, session_name).then(data => {
       console.log(data, "an array?");
       this.setState({ sessionData: data, isLoading: false });
     });
