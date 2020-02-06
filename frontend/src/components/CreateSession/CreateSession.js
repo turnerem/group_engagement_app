@@ -22,6 +22,7 @@ class CreateSession extends Component {
       type,
       multiQuestionInput
     } = this.state;
+    console.log(this.state.session_name.length);
     return (
       <div id="create-session-container">
         <Link to="/sessions">Back to dashboard</Link>
@@ -33,7 +34,7 @@ class CreateSession extends Component {
           }}
           value={session_name}
           id="session-name-input"
-          required
+          placeholder="required...."
         />
 
         <h4>Questions</h4>
@@ -68,7 +69,7 @@ class CreateSession extends Component {
               const filtered = multiQuestionInput.filter(
                 elem => elem !== undefined
               );
-              console.log(filtered.length);
+
               return (
                 <input
                   key={i}
@@ -99,6 +100,7 @@ class CreateSession extends Component {
         <button
           onClick={this.handleCreateSession}
           className="create-session-btn"
+          disabled={session_name.length < 1}
         >
           create sesh
         </button>
