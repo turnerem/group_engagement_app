@@ -15,8 +15,8 @@ const RegisterUser = () => {
     // console.log("sending post request");
     // console.log(userName);
     api.postNewUser(userName).then(response => {
-      // console.log("returned from api req, ", response);
-      if (response.status === 201) {
+      console.dir(response);
+      if (typeof response === "object" && Object.keys(response).includes('insert_id')) {
         setError(false);
         setCreatedUser(userName);
       } else {

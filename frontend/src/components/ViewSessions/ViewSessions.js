@@ -100,7 +100,7 @@ class ViewSessions extends Component {
       // doug:
       // this is to avoid crashed on no sessions found
       // TODO - add 'no sessions yet, why not create one!' message
-      if (sessions) {
+      if (sessions.length !== 0) {
         this.setState({ sessions, isLoading: false });
       } else {
         this.setState({ sessionsNotFound: true, isLoading: false });

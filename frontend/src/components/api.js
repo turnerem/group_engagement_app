@@ -1,7 +1,7 @@
 import axios from "axios";
 
+const baseURL = "http://192.168.0.17:5000/api";
 
-const baseURL = "http://192.168.100.117:5000/api";
 // const baseURL = "http://192.168.100.53:5000/api";
 
 export const getSessions = signedInUser => {

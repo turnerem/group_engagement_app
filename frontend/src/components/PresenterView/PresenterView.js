@@ -79,8 +79,9 @@ class PresenterView extends Component {
         {/* <p className="component-identifier">PresenterView component</p> */}
         <div id="session-view-header">
           <h3>{sessionCode}</h3>
-          <p>Abort Session</p>
+          <p id='abort-session'>Abort Session</p>
         </div>
+
         <div id="bar-chart-container">
           <h2 id='chart-title'>{chartTitle}</h2>
           <BarChart data={data} configs={configs} promptIdx={promptIdx} id="live-data-view" /> 
@@ -104,6 +105,7 @@ class PresenterView extends Component {
               );
             })}
         </ul>
+        <button id='end-session-btn'>End Session</button>
       </div>
     );
   }
