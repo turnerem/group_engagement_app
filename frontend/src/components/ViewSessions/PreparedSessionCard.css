@@ -1,0 +1,55 @@
+.session-card {
+  background: #1f1f1f;
+  border-radius: 8px;
+  /* width: 100%; */
+  margin: 1em 0;
+  border: 1px solid black;
+  padding: 1em 1.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.session-card-info > li {
+  text-align: left;
+  /* text-indent: 1em; */
+  color: white;
+}
+
+.session-question-count {
+  color: rgb(144, 144, 144);
+}
+
+.session-card-btns {
+  display: flex;
+  flex-direction: column;
+}
+
+.start-session-btn {
+  background: #00fbdd;
+  border: 0;
+  padding: 20px 50px;
+  border-radius: 8px;
+  margin-bottom: 0.5em;
+  cursor: pointer;
+}
+
+.edit-session-btn {
+  background: #000000;
+  color: white;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.session-time {
+  color: rgb(134, 134, 134);
+}
+
+@media only screen and (max-width: 668px) {
+  .start-session-btn {
+    padding: 10px 0;
+    width: 10em;
+  }
+}

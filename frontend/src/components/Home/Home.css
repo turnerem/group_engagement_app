@@ -1,0 +1,17 @@
+#home-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: sessionCode regLogIn;
+}
+
+#session-code {
+  grid-area: sessionCode;
+  background-color: black;
+}
+
+@media only screen and (max-width: 668px) {
+  #home-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
