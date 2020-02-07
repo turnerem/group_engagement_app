@@ -61,7 +61,7 @@ barChartD3.destroy = function(el, data) {
 // data: x labels must be unique (and orderable?)
 barChartD3._drawBars = function(el, data, configs, scales) {
   const x = d3.scaleBand()
-    .domain(data.map(d => `${d.label}: ${d.y}`))
+    .domain(data.map(d => d.label))
     .range([ 0, configs.width ])
     .padding(0.2)
 
