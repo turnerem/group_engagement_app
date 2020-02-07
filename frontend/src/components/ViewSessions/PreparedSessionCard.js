@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, navigate } from "@reach/router";
+import React from "react";
+import { Link } from "@reach/router";
 import "./PreparedSessionCard.css";
 
 const PreparedSessionCard = props => {
@@ -7,7 +7,7 @@ const PreparedSessionCard = props => {
     session: { session_name, questions }
   } = props;
 
-  const [sessionCode, setSessionCode] = useState("");
+  // const [sessionCode, setSessionCode] = useState("");
 
   // const handleChange = ({ target: { value } }) => {
   //   setSessionCode(value);
