@@ -3,6 +3,16 @@
   color: white;
   text-align: left;
   padding: 3em 10%;
+
+}
+
+#bar-chart-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+
 }
 
 #session-view-header {
@@ -41,6 +51,22 @@
   width: 100%;
   cursor: pointer;
 }
+
+rect:hover {
+  fill: #00ff00
+}
+
+.x-axis text {
+  font-size: 2.5em
+}
+
+#chart-title {
+  font-size: 2.5em
+}
+
+/* #session-view-container {
+  text-align: center;
+} */
 
 @media only screen and (max-width: 668px) {
   #session-view-container {

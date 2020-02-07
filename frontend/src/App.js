@@ -13,6 +13,7 @@ class App extends Component {
   state = {
     signedInUser: "JessJelly",
     endpoint: "http://192.168.0.17:5000"
+
   };
 
   render() {
