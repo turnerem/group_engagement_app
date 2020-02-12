@@ -34,7 +34,7 @@ class CreateSession extends Component {
           }}
           value={session_name}
           id="session-name-input"
-          placeholder="required...."
+          placeholder="required"
         />
 
         <h4>Questions</h4>
@@ -63,7 +63,7 @@ class CreateSession extends Component {
             required
           />
 
-          {type === "multi" ? <p>requires at least two answers</p> : null}
+          {type === "multi" ? <p>requires a minimum of two answers</p> : null}
 
           {type === "multi" &&
             multiQuestionInput.map((elem, i) => {
