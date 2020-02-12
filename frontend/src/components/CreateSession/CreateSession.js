@@ -183,13 +183,16 @@ class CreateSession extends Component {
   handleCreateSession = () => {
     const { session_name, questions } = this.state;
     const { signedInUser } = this.props;
-    postNewSession(signedInUser, session_name, questions).then(
-      this.setState({
-        session_name: "",
-        questions: []
-      })
-    );
-    navigate("/sessions");
+    postNewSession(signedInUser, session_name, questions)
+      .then(
+        this.setState({
+          session_name: "",
+          questions: []
+        })
+      )
+      .then(() => {
+        navigate("/sessions");
+      });
   };
 
   selectType = event => {

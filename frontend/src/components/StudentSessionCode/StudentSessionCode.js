@@ -33,7 +33,7 @@ class StudentSessionCode extends Component {
           <label htmlFor="join-room-input" id="join-room-label">
             Enter The Room Code:{" "}
           </label>
-          {/* {wrongCode && <p id="wrong-code-msg">Room code not in use</p>} */}
+          {wrongCode && <p id="wrong-code-msg">Room code not in use</p>}
           <input
             value={sessionCodeInput}
             onChange={this.handleChange}
@@ -55,18 +55,18 @@ class StudentSessionCode extends Component {
   };
 
   handleSubmit = event => {
-    console.log('user click!')
+    console.log("user click!");
 
     const { sessionCodeInput, wrongCode } = this.state;
     event.preventDefault();
-    this.setSessionListener(sessionCodeInput);
+    // this.setSessionListener(sessionCodeInput);
 
-    // if (sessionCodeInput !== "H") {
-    //   this.setState({ wrongCode: true });
-    // } else {
-    //   this.setSessionListener(sessionCodeInput);
-    //   // this.setState({ sessionCodeInput: "", roomEntered: true });
-    // }
+    if (sessionCodeInput !== "hireus") {
+      this.setState({ wrongCode: true });
+    } else {
+      this.setSessionListener(sessionCodeInput);
+      // this.setState({ sessionCodeInput: "", roomEntered: true });
+    }
   };
 
   setSessionListener = sessionCode => {

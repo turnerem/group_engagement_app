@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://192.168.0.17:5000/api";
+const baseURL = "http://192.168.100.247:5000/api";
 
 // const baseURL = "http://192.168.100.53:5000/api";
 
